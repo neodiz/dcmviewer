@@ -7,3 +7,4 @@ TableShow::TableShow()
     tableshow << "ФИО пациента" << "Номер Пациента" << "Номер Услуги" << "Получить";
     this->setHorizontalHeaderLabels(tableshow);
 }
+
