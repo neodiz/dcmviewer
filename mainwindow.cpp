@@ -79,7 +79,7 @@ void MainWindow::DIRPushButton_clicked()
    ui->FioLineEdit->setText(Patient);
     ui->NumPacIDLineEdit->setText(PatientID);
     ui->AccessNumLineEdit->setText(AccessionNumber);
-    ui->ModalityLineEdit->setText(dcmSOPClassUIDToModality(filename.returnSopClass().toAscii().data()));
+    ui->ModalityLineEdit->setText(dcmSOPClassUIDToModality(filename.returnSopClass().toLatin1().data()));
     ui->WriteDataDicomButton->setVisible(true);
     ui->ShowPushButton->setVisible(true);
 
@@ -117,7 +117,7 @@ void MainWindow::SetWriteDatatoDicom()
 {
    QList<QString> files=filename.returnFiles();
     for(int i=0;i<filename.returnCountFiles();i++)
-        if (filename.WriteDataToFile(files.at(i),ui->FioLineEdit->text().toAscii().data(),ui->NumPacIDLineEdit->text().toAscii().data(),ui->AccessNumLineEdit->text().toAscii().data()))
+        if (filename.WriteDataToFile(files.at(i),ui->FioLineEdit->text().toLatin1().data(),ui->NumPacIDLineEdit->text().toLatin1().data(),ui->AccessNumLineEdit->text().toLatin1().data()))
             ui->progressBar->setValue(i);
 
 
@@ -135,6 +135,10 @@ void MainWindow::ShowClassButton()
 
 void MainWindow::QueryButton()
 {
+    QList <QString> QueryPatientName;
+    QList <QString> QueryPatientID;
+    QList <QString> QueryAccessionNumber;
+
     if (!(ui->ServerLE->isModified()
           ||ui->PortLE->isModified()
           || ui->RAETLE->isModified()))

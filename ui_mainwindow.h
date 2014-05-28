@@ -355,30 +355,30 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Send Images", 0, QApplication::UnicodeUTF8));
-        groupBox_3->setTitle(QApplication::translate("MainWindow", "\320\237\321\203\321\202\321\214 \320\264\320\276 Dicom \321\201\320\275\320\270\320\274\320\272\320\276\320\262:", 0, QApplication::UnicodeUTF8));
-        DirectoryButton->setText(QApplication::translate("MainWindow", "...", 0, QApplication::UnicodeUTF8));
-        FIO_label->setText(QApplication::translate("MainWindow", "\320\244\320\230\320\236:", 0, QApplication::UnicodeUTF8));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Send Images", 0));
+        groupBox_3->setTitle(QApplication::translate("MainWindow", "\320\237\321\203\321\202\321\214 \320\264\320\276 Dicom \321\201\320\275\320\270\320\274\320\272\320\276\320\262:", 0));
+        DirectoryButton->setText(QApplication::translate("MainWindow", "...", 0));
+        FIO_label->setText(QApplication::translate("MainWindow", "\320\244\320\230\320\236:", 0));
         NumPacIDLabel->setText(QApplication::translate("MainWindow", "\320\235\320\276\320\274\320\265\321\200\n"
-"\320\237\320\260\321\206\320\270\320\265\320\275\321\202\320\260:", 0, QApplication::UnicodeUTF8));
+"\320\237\320\260\321\206\320\270\320\265\320\275\321\202\320\260:", 0));
         AccessNumLabel->setText(QApplication::translate("MainWindow", "\320\235\320\276\320\274\320\265\321\200 \n"
-"\320\270\321\201\321\201\320\273\320\265\320\264\320\276\320\262\320\260\320\275\320\270\321\217:", 0, QApplication::UnicodeUTF8));
-        AccessNumLabel_2->setText(QApplication::translate("MainWindow", "\320\234\320\276\320\264\320\260\320\273\321\214\320\275\320\276\321\201\321\202\321\214:", 0, QApplication::UnicodeUTF8));
-        ShowPushButton->setText(QApplication::translate("MainWindow", "\320\237\321\200\320\276\321\201\320\274\320\276\321\202\321\200\320\265\321\202\321\214", 0, QApplication::UnicodeUTF8));
-        WriteDataDicomButton->setText(QApplication::translate("MainWindow", "\320\230\320\267\320\274\320\265\320\275\320\270\321\202\321\214", 0, QApplication::UnicodeUTF8));
-        groupBox->setTitle(QApplication::translate("MainWindow", "\320\237\320\260\321\200\320\260\320\274\320\265\321\202\321\200\321\213 \320\241\320\265\321\200\320\262\320\265\321\200\320\260:", 0, QApplication::UnicodeUTF8));
+"\320\270\321\201\321\201\320\273\320\265\320\264\320\276\320\262\320\260\320\275\320\270\321\217:", 0));
+        AccessNumLabel_2->setText(QApplication::translate("MainWindow", "\320\234\320\276\320\264\320\260\320\273\321\214\320\275\320\276\321\201\321\202\321\214:", 0));
+        ShowPushButton->setText(QApplication::translate("MainWindow", "\320\237\321\200\320\276\321\201\320\274\320\276\321\202\321\200\320\265\321\202\321\214", 0));
+        WriteDataDicomButton->setText(QApplication::translate("MainWindow", "\320\230\320\267\320\274\320\265\320\275\320\270\321\202\321\214", 0));
+        groupBox->setTitle(QApplication::translate("MainWindow", "\320\237\320\260\321\200\320\260\320\274\320\265\321\202\321\200\321\213 \320\241\320\265\321\200\320\262\320\265\321\200\320\260:", 0));
         ServerLabel->setText(QApplication::translate("MainWindow", "IP \320\260\320\264\321\200\320\265\321\201 \n"
-"\321\201\320\265\321\200\320\262\320\265\321\200\320\260", 0, QApplication::UnicodeUTF8));
+"\321\201\320\265\321\200\320\262\320\265\321\200\320\260", 0));
         PortLabel->setText(QApplication::translate("MainWindow", "\320\237\320\276\321\200\321\202 \n"
-"\321\201\320\265\321\200\320\262\320\265\321\200\320\260", 0, QApplication::UnicodeUTF8));
+"\321\201\320\265\321\200\320\262\320\265\321\200\320\260", 0));
         RAETLabel->setText(QApplication::translate("MainWindow", "\320\243\320\264\320\260\320\273\320\265\320\275\320\275\321\213\320\271\n"
-" AET", 0, QApplication::UnicodeUTF8));
+" AET", 0));
         LAETLabel->setText(QApplication::translate("MainWindow", "\320\233\320\276\320\272\320\260\320\273\321\214\320\275\321\213\320\271 \n"
-"AET", 0, QApplication::UnicodeUTF8));
-        QueryButton->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\277\321\200\320\276\321\201\320\270\321\202\321\214", 0, QApplication::UnicodeUTF8));
-        CheckEchoPushButton->setText(QApplication::translate("MainWindow", "\320\237\321\200\320\276\320\262\320\265\321\200\320\270\321\202\321\214", 0, QApplication::UnicodeUTF8));
-        OKPushButton->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214", 0, QApplication::UnicodeUTF8));
-        CancelPushButton->setText(QApplication::translate("MainWindow", "\320\236\321\202\320\274\320\265\320\275\320\260", 0, QApplication::UnicodeUTF8));
+"AET", 0));
+        QueryButton->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\277\321\200\320\276\321\201\320\270\321\202\321\214", 0));
+        CheckEchoPushButton->setText(QApplication::translate("MainWindow", "\320\237\321\200\320\276\320\262\320\265\321\200\320\270\321\202\321\214", 0));
+        OKPushButton->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214", 0));
+        CancelPushButton->setText(QApplication::translate("MainWindow", "\320\236\321\202\320\274\320\265\320\275\320\260", 0));
     } // retranslateUi
 
 };

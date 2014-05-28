@@ -40,6 +40,7 @@ public:
     bool createAssociation();
     bool senFile(QString UrlPathDicom);
     bool queryDcm(QList<QString> &QueryPatientName,QList<QString> &QueryPatientID,QList<QString> &QueryAccessionNumber);
+    bool cgetDcm();
     void setTransferSyntaxPresentationContext(QString transferSintax,QString SopClass);
     void setTransferSyntaxPresentationContext(QString taskDicom);
     ~DcmSend();

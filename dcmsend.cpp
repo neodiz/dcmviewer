@@ -8,9 +8,9 @@
 DcmSend::DcmSend(QString ipAddress, QString portAddress, QString aeAddress, QString aeLocal)
 {
 
-    Sender.setAETitle(aeLocal.toAscii().data());
-    Sender.setPeerAETitle(aeAddress.toAscii().data());
-    Sender.setPeerHostName(ipAddress.toAscii().data());
+    Sender.setAETitle(aeLocal.toLatin1().data());
+    Sender.setPeerAETitle(aeAddress.toLatin1().data());
+    Sender.setPeerHostName(ipAddress.toLatin1().data());
     Sender.setPeerPort(portAddress.toUInt());
     presID = 0;
 }
@@ -26,7 +26,7 @@ bool DcmSend::echoSend()
 
 bool DcmSend::senFile(QString UrlPathDicom)
 {
-    result = Sender.sendSTORERequest(presID,UrlPathDicom.toAscii().data(),NULL,msg,statusDetail,statusCode);
+    result = Sender.sendSTORERequest(presID,UrlPathDicom.toLatin1().data(),NULL,msg,statusDetail,statusCode);
     if (result.good())
         return true;
     else
@@ -77,10 +77,15 @@ bool DcmSend::queryDcm(QList <QString>  &QueryPatientName, QList <QString> &Quer
 
 }
 
+bool DcmSend::cgetDcm()
+{
+
+}
+
 void DcmSend::setTransferSyntaxPresentationContext(QString transferSintax,QString SopClass)
 {
-   ts.push_back(transferSintax.toAscii().data());
-   Sender.addPresentationContext(SopClass.toAscii().data(),ts);
+   ts.push_back(transferSintax.toLatin1().data());
+   Sender.addPresentationContext(SopClass.toLatin1().data(),ts);
 
 }
 void DcmSend::setTransferSyntaxPresentationContext(QString taskDicom)
@@ -105,7 +110,6 @@ bool DcmSend::initNetwork()
         return false;
     }
     return true;
-
 }
 
 bool DcmSend::createAssociation()

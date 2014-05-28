@@ -90,7 +90,7 @@ QSize DcmFile::sizeDCMFile()
 
 void DcmFile::OpenDcmFile(int i)
 {
-    result = DcmFilename.loadFile(list.at(i).absoluteFilePath().toAscii().data());
+    result = DcmFilename.loadFile(list.at(i).absoluteFilePath().toLatin1().data());
     if (result.bad())
             return;
 
@@ -101,7 +101,7 @@ QList<QString> DcmFile::returnFiles()
 {
     QList<QString> files;
     for (int i=0;i<list.size();i++){
-        files.append(list.at(i).absoluteFilePath().toAscii().data());
+        files.append(list.at(i).absoluteFilePath().toLatin1().data());
     }
     return files;
 }
@@ -131,7 +131,7 @@ QString DcmFile::returnSopClass()
 
 bool DcmFile::WriteDataToFile(QString UrlPathDicom,OFString Patient,OFString NumPatient,OFString AccesPatient)
 {
-    result = DcmFilename.loadFile(UrlPathDicom.toAscii().data());
+    result = DcmFilename.loadFile(UrlPathDicom.toLatin1().data());
     if (result.bad())
         return false;
     result = DcmFilename.loadAllDataIntoMemory();
@@ -147,7 +147,7 @@ bool DcmFile::WriteDataToFile(QString UrlPathDicom,OFString Patient,OFString Num
     result= DcmFilename.getDataset()->putAndInsertString(DCM_PatientName,Patient.data());
     if (result.bad())
         return false;
-    result = DcmFilename.saveFile(UrlPathDicom.toAscii().data());
+    result = DcmFilename.saveFile(UrlPathDicom.toLatin1().data());
     if (result.bad())
         return false;
 }

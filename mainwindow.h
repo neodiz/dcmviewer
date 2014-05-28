@@ -23,9 +23,7 @@ public:
 private:
     Ui::MainWindow *ui;
     bool LaetEdit;
-    QList <QString> QueryPatientName;
-    QList <QString> QueryPatientID;
-    QList <QString> QueryAccessionNumber;
+
 private slots:
     void SenButton_clicked();
     void DIRPushButton_clicked();

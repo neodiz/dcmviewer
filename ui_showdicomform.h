@@ -135,14 +135,14 @@ public:
 
     void retranslateUi(QWidget *showDicomForm)
     {
-        showDicomForm->setWindowTitle(QApplication::translate("showDicomForm", "\320\237\321\200\320\276\321\201\320\274\320\276\321\202 \320\230\320\267\320\276\320\261\321\200\320\260\320\266\320\265\320\275\320\270\321\217", 0, QApplication::UnicodeUTF8));
+        showDicomForm->setWindowTitle(QApplication::translate("showDicomForm", "\320\237\321\200\320\276\321\201\320\274\320\276\321\202 \320\230\320\267\320\276\320\261\321\200\320\260\320\266\320\265\320\275\320\270\321\217", 0));
         label->setText(QString());
-        label_2->setText(QApplication::translate("showDicomForm", "\320\244\320\230\320\236", 0, QApplication::UnicodeUTF8));
-        label_3->setText(QApplication::translate("showDicomForm", "\320\235\320\276\320\274\320\265\321\200 \321\203\321\201\320\273\321\203\320\263\320\270", 0, QApplication::UnicodeUTF8));
-        label_4->setText(QApplication::translate("showDicomForm", "\320\235\320\276\320\274\320\265\321\200 \320\270\321\201\321\201\320\273\320\265\320\264\320\276\320\262\320\260\320\275\320\270\321\217", 0, QApplication::UnicodeUTF8));
-        label_5->setText(QApplication::translate("showDicomForm", "\320\242\320\270\320\277 \320\270\321\201\321\201\320\273\320\265\320\264\320\276\320\262\320\260\320\275\320\270\321\217", 0, QApplication::UnicodeUTF8));
-        label_6->setText(QApplication::translate("showDicomForm", "\320\242\320\270\320\277 \321\201\320\266\320\260\321\202\320\270\321\217", 0, QApplication::UnicodeUTF8));
-        CloseButton->setText(QApplication::translate("showDicomForm", "\320\227\320\260\320\272\321\200\321\213\321\202\321\214", 0, QApplication::UnicodeUTF8));
+        label_2->setText(QApplication::translate("showDicomForm", "\320\244\320\230\320\236", 0));
+        label_3->setText(QApplication::translate("showDicomForm", "\320\235\320\276\320\274\320\265\321\200 \321\203\321\201\320\273\321\203\320\263\320\270", 0));
+        label_4->setText(QApplication::translate("showDicomForm", "\320\235\320\276\320\274\320\265\321\200 \320\270\321\201\321\201\320\273\320\265\320\264\320\276\320\262\320\260\320\275\320\270\321\217", 0));
+        label_5->setText(QApplication::translate("showDicomForm", "\320\242\320\270\320\277 \320\270\321\201\321\201\320\273\320\265\320\264\320\276\320\262\320\260\320\275\320\270\321\217", 0));
+        label_6->setText(QApplication::translate("showDicomForm", "\320\242\320\270\320\277 \321\201\320\266\320\260\321\202\320\270\321\217", 0));
+        CloseButton->setText(QApplication::translate("showDicomForm", "\320\227\320\260\320\272\321\200\321\213\321\202\321\214", 0));
     } // retranslateUi
 
 };
