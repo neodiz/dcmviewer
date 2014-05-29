@@ -6,4 +6,5 @@ TableShow::TableShow()
     QStringList tableshow;
     tableshow << "ФИО пациента" << "Номер Пациента" << "Номер Услуги" << "Получить";
     this->setHorizontalHeaderLabels(tableshow);
+    this->setMinimumSize(this->ta);
 }
