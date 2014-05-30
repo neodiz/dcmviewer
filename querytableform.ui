@@ -13,13 +13,13 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QTableWidget" name="tableWidget">
+  <widget class="QTableView" name="tableView">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>60</x>
      <y>160</y>
-     <width>611</width>
-     <height>331</height>
+     <width>511</width>
+     <height>301</height>
     </rect>
    </property>
   </widget>
@@ -157,7 +157,6 @@
     </item>
    </layout>
   </widget>
-  <zorder>tableWidget</zorder>
   <zorder>textEdit</zorder>
   <zorder>pushButtonSearch</zorder>
   <zorder>textEdit_2</zorder>
@@ -168,6 +167,7 @@
   <zorder>dateEdit</zorder>
   <zorder>dateEdit_2</zorder>
   <zorder>verticalSpacer</zorder>
+  <zorder>tableView</zorder>
  </widget>
  <resources/>
  <connections/>
