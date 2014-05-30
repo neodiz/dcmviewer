@@ -1,15 +1,13 @@
 #include "querytable.h"
 #include "ui_querytableform.h"
+#include "querydata.h"
+#include "datatablemodel.h"
 
 queryTable::queryTable(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::queryTable)
 {
     ui->setupUi(this);
-    ui->tableWidget->setColumnCount(4);
-    QStringList tableshow;
-    tableshow << "ФИО пациента" << "Номер Пациента" << "Номер Услуги" << "Получить";
-    ui->tableWidget->setHorizontalHeaderLabels(tableshow);
 }
 
 bool queryTable::SetPatientName(QList<QString> Patient)
@@ -39,14 +37,17 @@ bool queryTable::setAccessionNumber(QList<QString> AccessionNumber)
 
 void queryTable::writeDataTableSpace()
 {
- ui->tableWidget->setRowCount(QueryPatientName.size());
- for (int i=0;i<QueryPatientName.size();i++){
-     ui->tableWidget->setItem(i,0,new QTableWidgetItem(QueryPatientName.at(i)));
-     ui->tableWidget->setItem(i,1,new QTableWidgetItem(QueryPatientID.at(i)));
-     ui->tableWidget->setItem(i,2,new QTableWidgetItem(QueryAccessionNumber.at(i)));
-     ui->tableWidget->setCellWidget(i,3,new QPushButton("Запросить"));
+    QList <QueryData *> ModelData;
+    DataTableModel* model= new DataTableModel;
+    for(int i=0;i<QueryPatientName.size();i++){
+        QueryData *data = new QueryData();
+        data->PatientName= QueryPatientName.at(i);
+        data->PatientID= QueryPatientID.at(i);
+        data->AccessionNumber= QueryAccessionNumber.at(i);
+        model->list.append(data);
+    }
 
- }
+    ui->tableView->setModel(model);
 }
 
 queryTable::~queryTable()

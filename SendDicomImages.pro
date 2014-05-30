@@ -17,16 +17,18 @@ SOURCES += main.cpp\
     dcmsend.cpp \
     dcmfile.cpp \
     showdicomform.cpp \
-    tableshow.cpp \
-    querytable.cpp
+    querytable.cpp \
+    querydata.cpp \
+    datatablemodel.cpp
 
 
 HEADERS  += mainwindow.h \
     dcmsend.h \
     dcmfile.h \
     showdicomform.h \
-    tableshow.h \
-    querytable.h
+    querytable.h \
+    querydata.h \
+    datatablemodel.h
 
 
 FORMS    += mainwindow.ui \
