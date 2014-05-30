@@ -7,6 +7,9 @@ class TableShow : public QTableWidget
 {
 public:
     TableShow();
+private:
+    static QSize myGetQTableWidgetSize();
+
 };
 
 #endif // TABLESHOW_H

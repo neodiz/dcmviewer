@@ -17,18 +17,21 @@ SOURCES += main.cpp\
     dcmsend.cpp \
     dcmfile.cpp \
     showdicomform.cpp \
-    tableshow.cpp
+    tableshow.cpp \
+    querytable.cpp
 
 
 HEADERS  += mainwindow.h \
     dcmsend.h \
     dcmfile.h \
     showdicomform.h \
-    tableshow.h
+    tableshow.h \
+    querytable.h
 
 
 FORMS    += mainwindow.ui \
-    showdicomform.ui
+    showdicomform.ui \
+    querytableform.ui
 
 
 unix:!macx: LIBS = -ldcmnet -ldcmdata -lofstd -loflog -ldcmimgle -ldcmjpeg -lijg12 -lijg16 -lijg8

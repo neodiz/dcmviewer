@@ -5,6 +5,7 @@
 #include <QFileDialog>
 #include "dcmsend.h"
 #include <showdicomform.h>
+#include <querytable.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -135,10 +136,8 @@ void MainWindow::ShowClassButton()
 
 void MainWindow::QueryButton()
 {
-    QList <QString> QueryPatientName;
-    QList <QString> QueryPatientID;
-    QList <QString> QueryAccessionNumber;
-
+    QList <QString> QueryPatientName,QueryPatientID,QueryAccessionNumber;
+    queryTable *table= new queryTable();
     if (!(ui->ServerLE->isModified()
           ||ui->PortLE->isModified()
           || ui->RAETLE->isModified()))
@@ -156,16 +155,15 @@ void MainWindow::QueryButton()
         QMessageBox::critical(0,"Error", "Нет возможности установить ассоциацию с PACS сервер");
     if (!QueryDcm.queryDcm(QueryPatientName,QueryPatientID,QueryAccessionNumber))
         QMessageBox::critical(0,"Error", "Нет возможности установить соединение с PACS сервер");
-    TableShow *table = new TableShow();
-    table->setRowCount(QueryPatientName.size());
-    table->horizontalHeader()->setDefaultSectionSize(240);
-    for (int i=0;i<QueryPatientName.size();i++){
-        table->setItem(i,0,new QTableWidgetItem(QueryPatientName.at(i)));
-        table->setItem(i,1,new QTableWidgetItem(QueryPatientID.at(i)));
-        table->setItem(i,2,new QTableWidgetItem(QueryAccessionNumber.at(i)));
-        table->setCellWidget(i,3,new QPushButton("Запросить"));
+    if (!table->SetPatientName(QueryPatientName) ||
+        !table->setPatientID(QueryPatientID) ||
+        !table->setAccessionNumber(QueryAccessionNumber)){
+        QMessageBox::critical(0,"Error", "Нет возможности получить данные с PACS");
     }
+    else {
+    table->writeDataTableSpace();
     table->show();
+    }
 
 }
 
