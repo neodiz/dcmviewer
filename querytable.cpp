@@ -45,6 +45,7 @@ void queryTable::writeDataTableSpace()
      ui->tableWidget->setItem(i,1,new QTableWidgetItem(QueryPatientID.at(i)));
      ui->tableWidget->setItem(i,2,new QTableWidgetItem(QueryAccessionNumber.at(i)));
      ui->tableWidget->setCellWidget(i,3,new QPushButton("Запросить"));
+
  }
 }
 
