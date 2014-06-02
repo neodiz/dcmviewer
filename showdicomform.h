@@ -5,7 +5,7 @@
 #include <QPixmap>
 #include <QImage>
 #include <QSize>
-#include "tableshow.h"
+//#include "tableshow.h"
 
 
 namespace Ui {

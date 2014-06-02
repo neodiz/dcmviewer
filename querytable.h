@@ -2,6 +2,8 @@
 #define QUERYTABLE_H
 
 #include <QWidget>
+#include <QModelIndex>
+#include "datatablemodel.h"
 
 namespace Ui {
 class queryTable;
@@ -24,6 +26,9 @@ private:
     QList <QString> QueryPatientName;
     QList <QString> QueryPatientID;
     QList <QString> QueryAccessionNumber;
+    DataTableModel* model= new DataTableModel;
+private slots:
+    void onClicked(QModelIndex index);
 };
 
 #endif // QUERYTABLE_H
