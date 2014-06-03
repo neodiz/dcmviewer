@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QModelIndex>
 #include "datatablemodel.h"
+#include <QSortFilterProxyModel>
 
 namespace Ui {
 class queryTable;
@@ -27,8 +28,10 @@ private:
     QList <QString> QueryPatientID;
     QList <QString> QueryAccessionNumber;
     DataTableModel* model= new DataTableModel;
+    QSortFilterProxyModel *proxyModel;
 private slots:
     void onClicked(QModelIndex index);
+    void ClickedFilterQuery();
 };
 
 #endif // QUERYTABLE_H

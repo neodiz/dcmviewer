@@ -3,6 +3,7 @@
 #include "querydata.h"
 #include <QDebug>
 
+
 queryTable::queryTable(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::queryTable)
@@ -49,7 +50,10 @@ void queryTable::writeDataTableSpace()
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     connect (ui->tableView,SIGNAL(clicked(QModelIndex)),this,SLOT(onClicked(QModelIndex)));
-    ui->tableView->setModel(model);
+    connect(ui->pushButtonSearch,SIGNAL(clicked()),this,SLOT(ClickedFilterQuery()));
+     proxyModel = new QSortFilterProxyModel(this);
+    proxyModel->setSourceModel(model);
+    ui->tableView->setModel(proxyModel);
 }
 
 queryTable::~queryTable()
@@ -60,6 +64,33 @@ queryTable::~queryTable()
 void queryTable::onClicked(QModelIndex index)
 {
     qDebug() << model->list.at(index.row())->PatientName;
+
+}
+
+void queryTable::ClickedFilterQuery()
+{
+    if (ui->searchLinePatientName->text().isEmpty())
+        qDebug() << "patientName not set";
+    else{
+        proxyModel->setFilterRegExp(ui->searchLinePatientName->displayText());
+        proxyModel->setFilterKeyColumn(0);
+    }
+
+    if (ui->searchLinePatientID->text().isEmpty())
+        qDebug() << "patientID no set";
+    else {
+        proxyModel->setFilterRegExp(ui->searchLinePatientID->displayText());
+        proxyModel->setFilterKeyColumn(1);
+    }
+
+
+    if (ui->searchLineAccessionNumber->text().isEmpty())
+        qDebug() << "Accession Number not set";
+    else{
+        proxyModel->setFilterRegExp(ui->searchLineAccessionNumber->displayText());
+        proxyModel->setFilterKeyColumn(2);
+    }
+
 
 }
 
