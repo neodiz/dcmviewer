@@ -69,27 +69,34 @@ void queryTable::onClicked(QModelIndex index)
 
 void queryTable::ClickedFilterQuery()
 {
-    if (ui->searchLinePatientName->text().isEmpty())
-        qDebug() << "patientName not set";
-    else{
-        proxyModel->setFilterRegExp(ui->searchLinePatientName->displayText());
+    bool setFilter=false;
+    if (!ui->searchLinePatientName->text().isEmpty()){
+        QString UrlSearch("^");
+        UrlSearch.append(ui->searchLinePatientName->text());
+        QRegExp Regex(UrlSearch);
+        proxyModel->setFilterRegExp(Regex);
         proxyModel->setFilterKeyColumn(0);
+        setFilter = true;
     }
-
-    if (ui->searchLinePatientID->text().isEmpty())
-        qDebug() << "patientID no set";
-    else {
-        proxyModel->setFilterRegExp(ui->searchLinePatientID->displayText());
+    if (!ui->searchLinePatientID->text().isEmpty()){
+        QString UrlSearch("^");
+        UrlSearch.append(ui->searchLinePatientID->text());
+        qDebug() << UrlSearch;
+        QRegExp Regex(UrlSearch);
+        proxyModel->setFilterRegExp(Regex);
         proxyModel->setFilterKeyColumn(1);
+        setFilter = true;
     }
-
-
-    if (ui->searchLineAccessionNumber->text().isEmpty())
-        qDebug() << "Accession Number not set";
-    else{
-        proxyModel->setFilterRegExp(ui->searchLineAccessionNumber->displayText());
+    if (!ui->searchLineAccessionNumber->text().isEmpty()){
+        QString UrlSearch("^");
+        UrlSearch.append(ui->searchLineAccessionNumber->text());
+        QRegExp Regex(UrlSearch);
+        proxyModel->setFilterRegExp(Regex);
         proxyModel->setFilterKeyColumn(2);
+        setFilter = true;
     }
+    if (!setFilter)
+        proxyModel->setFilterRegExp("");
 
 
 }

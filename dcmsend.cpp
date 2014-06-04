@@ -80,6 +80,7 @@ bool DcmSend::queryDcm(QList <QString>  &QueryPatientName, QList <QString> &Quer
 bool DcmSend::cgetDcm()
 {
 
+
 }
 
 void DcmSend::setTransferSyntaxPresentationContext(QString transferSintax,QString SopClass)
