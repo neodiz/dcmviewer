@@ -38,7 +38,7 @@ bool DcmSend::senFile(QString UrlPathDicom)
 bool DcmSend::queryDcm(QList <QString>  &QueryPatientName, QList <QString> &QueryPatientID, QList <QString> &QueryAccessionNumber)
 {
 
-    FINDResponses findResponses;
+    OFVector<QRResponse*> findResponses;
     DcmDataset req;
     req.insertEmptyElement(DCM_PatientName);
     req.insertEmptyElement(DCM_PatientID);
@@ -51,27 +51,26 @@ bool DcmSend::queryDcm(QList <QString>  &QueryPatientName, QList <QString> &Quer
         DCMNET_ERROR("There is no uncompressed presentation context for Study Root FIND");
         return 1;
     }
-    result = Sender.sendFINDRequest(presID, &req, &findResponses);
+    result = Sender.sendFINDRequest(presID, &req,&findResponses);
+
 
     if (result.bad())
        return false;
 
-    OFListIterator(FINDResponse*) study = findResponses.begin();
+
     OFString NamePatient;
     OFString PatientID;
     OFString AccessionNumber;
-    while(study != findResponses.end())
-    {
-        if ((*study)->m_dataset != NULL){
+    for (int i=0;i<findResponses.size();i++){
+        if (findResponses.at(i)->m_dataset != NULL){
 
-            result= (*study)->m_dataset->findAndGetOFString(DCM_PatientName,NamePatient);
-            result= (*study)->m_dataset->findAndGetOFString(DCM_AccessionNumber,AccessionNumber);
-            result= (*study)->m_dataset->findAndGetOFString(DCM_PatientID,PatientID);
+            result= findResponses.at(i)->m_dataset->findAndGetOFString(DCM_PatientName,NamePatient);
+            result= findResponses.at(i)->m_dataset->findAndGetOFString(DCM_AccessionNumber,AccessionNumber);
+            result= findResponses.at(i)->m_dataset->findAndGetOFString(DCM_PatientID,PatientID);
             QueryPatientName << NamePatient.data();
             QueryPatientID << PatientID.data();
             QueryAccessionNumber << AccessionNumber.data();
         }
-        study ++ ;
     }
     return true;
 
