@@ -32,6 +32,7 @@ private slots:
     void ShowClassButton();
     void QueryButton();
     void LAetSet();
+    void GetTestSLOT();
 
 };
 

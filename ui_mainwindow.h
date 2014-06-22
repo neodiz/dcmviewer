@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 4.8.5
+** Created by: Qt User Interface Compiler version 5.2.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,24 +10,24 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QGridLayout>
-#include <QtGui/QGroupBox>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
-#include <QtGui/QLineEdit>
-#include <QtGui/QMainWindow>
-#include <QtGui/QMenuBar>
-#include <QtGui/QProgressBar>
-#include <QtGui/QPushButton>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QStatusBar>
-#include <QtGui/QToolBar>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenuBar>
+#include <QtWidgets/QProgressBar>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QStatusBar>
+#include <QtWidgets/QToolBar>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -79,6 +79,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QPushButton *OKPushButton;
     QPushButton *CancelPushButton;
+    QPushButton *GetButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -86,32 +87,32 @@ public:
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
-            MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
+            MainWindow->setObjectName(QStringLiteral("MainWindow"));
         MainWindow->resize(775, 604);
         centralWidget = new QWidget(MainWindow);
-        centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
+        centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayout = new QGridLayout(centralWidget);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
-        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
         groupBox_3 = new QGroupBox(centralWidget);
-        groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
+        groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
         groupBox_3->setAutoFillBackground(false);
         verticalLayout_3 = new QVBoxLayout(groupBox_3);
         verticalLayout_3->setSpacing(6);
         verticalLayout_3->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         UrlDicomImages = new QLineEdit(groupBox_3);
-        UrlDicomImages->setObjectName(QString::fromUtf8("UrlDicomImages"));
+        UrlDicomImages->setObjectName(QStringLiteral("UrlDicomImages"));
         UrlDicomImages->setLayoutDirection(Qt::LeftToRight);
 
         horizontalLayout_2->addWidget(UrlDicomImages);
 
         DirectoryButton = new QPushButton(groupBox_3);
-        DirectoryButton->setObjectName(QString::fromUtf8("DirectoryButton"));
+        DirectoryButton->setObjectName(QStringLiteral("DirectoryButton"));
         DirectoryButton->setMaximumSize(QSize(50, 16777215));
         DirectoryButton->setSizeIncrement(QSize(0, 0));
 
@@ -122,14 +123,14 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setSpacing(6);
-        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         FIO_label = new QLabel(groupBox_3);
-        FIO_label->setObjectName(QString::fromUtf8("FIO_label"));
+        FIO_label->setObjectName(QStringLiteral("FIO_label"));
 
         horizontalLayout_3->addWidget(FIO_label);
 
         FioLineEdit = new QLineEdit(groupBox_3);
-        FioLineEdit->setObjectName(QString::fromUtf8("FioLineEdit"));
+        FioLineEdit->setObjectName(QStringLiteral("FioLineEdit"));
 
         horizontalLayout_3->addWidget(FioLineEdit);
 
@@ -138,14 +139,14 @@ public:
 
         horizontalLayout_11 = new QHBoxLayout();
         horizontalLayout_11->setSpacing(6);
-        horizontalLayout_11->setObjectName(QString::fromUtf8("horizontalLayout_11"));
+        horizontalLayout_11->setObjectName(QStringLiteral("horizontalLayout_11"));
         NumPacIDLabel = new QLabel(groupBox_3);
-        NumPacIDLabel->setObjectName(QString::fromUtf8("NumPacIDLabel"));
+        NumPacIDLabel->setObjectName(QStringLiteral("NumPacIDLabel"));
 
         horizontalLayout_11->addWidget(NumPacIDLabel);
 
         NumPacIDLineEdit = new QLineEdit(groupBox_3);
-        NumPacIDLineEdit->setObjectName(QString::fromUtf8("NumPacIDLineEdit"));
+        NumPacIDLineEdit->setObjectName(QStringLiteral("NumPacIDLineEdit"));
 
         horizontalLayout_11->addWidget(NumPacIDLineEdit);
 
@@ -154,14 +155,14 @@ public:
 
         horizontalLayout_6 = new QHBoxLayout();
         horizontalLayout_6->setSpacing(6);
-        horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
+        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
         AccessNumLabel = new QLabel(groupBox_3);
-        AccessNumLabel->setObjectName(QString::fromUtf8("AccessNumLabel"));
+        AccessNumLabel->setObjectName(QStringLiteral("AccessNumLabel"));
 
         horizontalLayout_6->addWidget(AccessNumLabel);
 
         AccessNumLineEdit = new QLineEdit(groupBox_3);
-        AccessNumLineEdit->setObjectName(QString::fromUtf8("AccessNumLineEdit"));
+        AccessNumLineEdit->setObjectName(QStringLiteral("AccessNumLineEdit"));
 
         horizontalLayout_6->addWidget(AccessNumLineEdit);
 
@@ -170,14 +171,14 @@ public:
 
         horizontalLayout_10 = new QHBoxLayout();
         horizontalLayout_10->setSpacing(6);
-        horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
+        horizontalLayout_10->setObjectName(QStringLiteral("horizontalLayout_10"));
         AccessNumLabel_2 = new QLabel(groupBox_3);
-        AccessNumLabel_2->setObjectName(QString::fromUtf8("AccessNumLabel_2"));
+        AccessNumLabel_2->setObjectName(QStringLiteral("AccessNumLabel_2"));
 
         horizontalLayout_10->addWidget(AccessNumLabel_2);
 
         ModalityLineEdit = new QLineEdit(groupBox_3);
-        ModalityLineEdit->setObjectName(QString::fromUtf8("ModalityLineEdit"));
+        ModalityLineEdit->setObjectName(QStringLiteral("ModalityLineEdit"));
         ModalityLineEdit->setMouseTracking(false);
         ModalityLineEdit->setReadOnly(true);
 
@@ -188,9 +189,9 @@ public:
 
         horizontalLayout_12 = new QHBoxLayout();
         horizontalLayout_12->setSpacing(6);
-        horizontalLayout_12->setObjectName(QString::fromUtf8("horizontalLayout_12"));
+        horizontalLayout_12->setObjectName(QStringLiteral("horizontalLayout_12"));
         ShowPushButton = new QPushButton(groupBox_3);
-        ShowPushButton->setObjectName(QString::fromUtf8("ShowPushButton"));
+        ShowPushButton->setObjectName(QStringLiteral("ShowPushButton"));
 
         horizontalLayout_12->addWidget(ShowPushButton);
 
@@ -199,7 +200,7 @@ public:
         horizontalLayout_12->addItem(horizontalSpacer_2);
 
         WriteDataDicomButton = new QPushButton(groupBox_3);
-        WriteDataDicomButton->setObjectName(QString::fromUtf8("WriteDataDicomButton"));
+        WriteDataDicomButton->setObjectName(QStringLiteral("WriteDataDicomButton"));
         WriteDataDicomButton->setEnabled(true);
 
         horizontalLayout_12->addWidget(WriteDataDicomButton);
@@ -211,28 +212,28 @@ public:
         gridLayout->addWidget(groupBox_3, 0, 1, 1, 1);
 
         progressBar = new QProgressBar(centralWidget);
-        progressBar->setObjectName(QString::fromUtf8("progressBar"));
+        progressBar->setObjectName(QStringLiteral("progressBar"));
         progressBar->setValue(24);
 
         gridLayout->addWidget(progressBar, 1, 0, 1, 1);
 
         groupBox = new QGroupBox(centralWidget);
-        groupBox->setObjectName(QString::fromUtf8("groupBox"));
+        groupBox->setObjectName(QStringLiteral("groupBox"));
         groupBox->setAutoFillBackground(false);
         verticalLayout_2 = new QVBoxLayout(groupBox);
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         horizontalLayout_9 = new QHBoxLayout();
         horizontalLayout_9->setSpacing(6);
-        horizontalLayout_9->setObjectName(QString::fromUtf8("horizontalLayout_9"));
+        horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
         ServerLabel = new QLabel(groupBox);
-        ServerLabel->setObjectName(QString::fromUtf8("ServerLabel"));
+        ServerLabel->setObjectName(QStringLiteral("ServerLabel"));
 
         horizontalLayout_9->addWidget(ServerLabel);
 
         ServerLE = new QLineEdit(groupBox);
-        ServerLE->setObjectName(QString::fromUtf8("ServerLE"));
+        ServerLE->setObjectName(QStringLiteral("ServerLE"));
 
         horizontalLayout_9->addWidget(ServerLE);
 
@@ -241,14 +242,14 @@ public:
 
         horizontalLayout_8 = new QHBoxLayout();
         horizontalLayout_8->setSpacing(6);
-        horizontalLayout_8->setObjectName(QString::fromUtf8("horizontalLayout_8"));
+        horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
         PortLabel = new QLabel(groupBox);
-        PortLabel->setObjectName(QString::fromUtf8("PortLabel"));
+        PortLabel->setObjectName(QStringLiteral("PortLabel"));
 
         horizontalLayout_8->addWidget(PortLabel);
 
         PortLE = new QLineEdit(groupBox);
-        PortLE->setObjectName(QString::fromUtf8("PortLE"));
+        PortLE->setObjectName(QStringLiteral("PortLE"));
 
         horizontalLayout_8->addWidget(PortLE);
 
@@ -257,14 +258,14 @@ public:
 
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setSpacing(6);
-        horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
+        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
         RAETLabel = new QLabel(groupBox);
-        RAETLabel->setObjectName(QString::fromUtf8("RAETLabel"));
+        RAETLabel->setObjectName(QStringLiteral("RAETLabel"));
 
         horizontalLayout_7->addWidget(RAETLabel);
 
         RAETLE = new QLineEdit(groupBox);
-        RAETLE->setObjectName(QString::fromUtf8("RAETLE"));
+        RAETLE->setObjectName(QStringLiteral("RAETLE"));
 
         horizontalLayout_7->addWidget(RAETLE);
 
@@ -273,14 +274,14 @@ public:
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setSpacing(6);
-        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
         LAETLabel = new QLabel(groupBox);
-        LAETLabel->setObjectName(QString::fromUtf8("LAETLabel"));
+        LAETLabel->setObjectName(QStringLiteral("LAETLabel"));
 
         horizontalLayout_4->addWidget(LAETLabel);
 
         LAETLE = new QLineEdit(groupBox);
-        LAETLE->setObjectName(QString::fromUtf8("LAETLE"));
+        LAETLE->setObjectName(QStringLiteral("LAETLE"));
 
         horizontalLayout_4->addWidget(LAETLE);
 
@@ -289,9 +290,9 @@ public:
 
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setSpacing(6);
-        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
         QueryButton = new QPushButton(groupBox);
-        QueryButton->setObjectName(QString::fromUtf8("QueryButton"));
+        QueryButton->setObjectName(QStringLiteral("QueryButton"));
 
         horizontalLayout_5->addWidget(QueryButton);
 
@@ -300,7 +301,7 @@ public:
         horizontalLayout_5->addItem(horizontalSpacer);
 
         CheckEchoPushButton = new QPushButton(groupBox);
-        CheckEchoPushButton->setObjectName(QString::fromUtf8("CheckEchoPushButton"));
+        CheckEchoPushButton->setObjectName(QStringLiteral("CheckEchoPushButton"));
 
         horizontalLayout_5->addWidget(CheckEchoPushButton);
 
@@ -309,14 +310,14 @@ public:
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         OKPushButton = new QPushButton(groupBox);
-        OKPushButton->setObjectName(QString::fromUtf8("OKPushButton"));
+        OKPushButton->setObjectName(QStringLiteral("OKPushButton"));
 
         horizontalLayout->addWidget(OKPushButton);
 
         CancelPushButton = new QPushButton(groupBox);
-        CancelPushButton->setObjectName(QString::fromUtf8("CancelPushButton"));
+        CancelPushButton->setObjectName(QStringLiteral("CancelPushButton"));
 
         horizontalLayout->addWidget(CancelPushButton);
 
@@ -326,16 +327,22 @@ public:
 
         gridLayout->addWidget(groupBox, 0, 0, 1, 1);
 
+        GetButton = new QPushButton(centralWidget);
+        GetButton->setObjectName(QStringLiteral("GetButton"));
+        GetButton->setAutoDefault(true);
+
+        gridLayout->addWidget(GetButton, 1, 1, 1, 1);
+
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
-        menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 775, 27));
+        menuBar->setObjectName(QStringLiteral("menuBar"));
+        menuBar->setGeometry(QRect(0, 0, 775, 19));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
-        mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
+        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
         MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(MainWindow);
-        statusBar->setObjectName(QString::fromUtf8("statusBar"));
+        statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
         QWidget::setTabOrder(ServerLE, PortLE);
         QWidget::setTabOrder(PortLE, RAETLE);
@@ -379,6 +386,7 @@ public:
         CheckEchoPushButton->setText(QApplication::translate("MainWindow", "\320\237\321\200\320\276\320\262\320\265\321\200\320\270\321\202\321\214", 0));
         OKPushButton->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214", 0));
         CancelPushButton->setText(QApplication::translate("MainWindow", "\320\236\321\202\320\274\320\265\320\275\320\260", 0));
+        GetButton->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214", 0));
     } // retranslateUi
 
 };

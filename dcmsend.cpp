@@ -80,21 +80,21 @@ bool DcmSend::cgetDcm()
 {
     OFVector<RetrieveResponse*> findResponses;
     DcmDataset req;
-    req.insertEmptyElement(DCM_PatientName);
-    req.insertEmptyElement(DCM_PatientID);
-    req.insertEmptyElement(DCM_AccessionNumber);
+//    req.putAndInsertString(DCM_PatientName,"Nurmukhametov");
+    req.putAndInsertString(DCM_SOPInstanceUID,"1.2.840.113619.2.30.1.1762533908.1851.1361025148.88");
 
-    req.putAndInsertOFStringArray(DCM_QueryRetrieveLevel, "STUDY");
-    req.putAndInsertOFStringArray(DCM_StudyInstanceUID, "");
-    T_ASC_PresentationContextID presID = findUncompressedPC(UID_FINDPatientRootQueryRetrieveInformationModel, Sender);
+//    req.putAndInsertOFStringArray(DCM_QueryRetrieveLevel, "STUDY");
+//    req.putAndInsertOFStringArray(DCM_StudyInstanceUID, "");
+    T_ASC_PresentationContextID presID = findUncompressedPC(UID_GETPatientRootQueryRetrieveInformationModel, Sender);
     if (presID == 0)
     {
         DCMNET_ERROR("There is no uncompressed presentation context for Study Root FIND");
-        return 1;
+        return false;
     }
-    Sender.sendCGETRequest(presID,&req,&findResponses);
+    result=Sender.sendCGETRequest(presID,&req,&findResponses);
     if (result.bad())
         return false;
+    return true;
 
 
 }
@@ -115,7 +115,10 @@ void DcmSend::setTransferSyntaxPresentationContext(QString taskDicom)
     else if (taskDicom == "query" ){
       ts.push_back(UID_LittleEndianImplicitTransferSyntax);
       Sender.addPresentationContext(UID_FINDStudyRootQueryRetrieveInformationModel,ts);
-
+    }
+    else if (taskDicom == "cget") {
+        ts.push_back(UID_LittleEndianImplicitTransferSyntax);
+        Sender.addPresentationContext(UID_GETPatientRootQueryRetrieveInformationModel,ts);
     }
 }
 

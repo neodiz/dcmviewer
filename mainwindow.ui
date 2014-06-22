@@ -284,6 +284,16 @@ AET</string>
       </layout>
      </widget>
     </item>
+    <item row="1" column="1">
+     <widget class="QPushButton" name="GetButton">
+      <property name="text">
+       <string>Загрузить</string>
+      </property>
+      <property name="autoDefault">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -292,7 +302,7 @@ AET</string>
      <x>0</x>
      <y>0</y>
      <width>775</width>
-     <height>27</height>
+     <height>19</height>
     </rect>
    </property>
   </widget>

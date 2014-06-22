@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->ShowPushButton,SIGNAL(clicked()),this,SLOT(ShowClassButton()));
     connect(ui->QueryButton,SIGNAL(clicked()),this,SLOT(QueryButton()));
     connect(ui->LAETLE,SIGNAL(editingFinished()),this,SLOT(LAetSet()));
+    connect(ui->GetButton,SIGNAL(clicked()),this,SLOT(GetTestSLOT()));
     ui->progressBar->setVisible(false);
     ui->WriteDataDicomButton->setVisible(false);
     ui->ShowPushButton->setVisible(false);
@@ -170,6 +171,28 @@ void MainWindow::QueryButton()
 void MainWindow::LAetSet()
 {
     LaetEdit = true;
+}
+
+void MainWindow::GetTestSLOT()
+{
+    if (!(ui->ServerLE->isModified()
+          ||ui->PortLE->isModified()
+          || ui->RAETLE->isModified()))
+    {
+        QMessageBox::critical(0,"Error", "Parameters not set");
+        return;
+    }
+    if (!LaetEdit)
+        ui->LAETLE->setText("SENDER");
+    DcmSend QueryDcm(ui->ServerLE->text(),ui->PortLE->text(),ui->RAETLE->text(),ui->LAETLE->text());
+    QueryDcm.setTransferSyntaxPresentationContext(QString("cget"));
+    if (!QueryDcm.initNetwork())
+        QMessageBox::critical(0,"Error", "Нет возможности установить соединение с PACS сервер");
+    if (!QueryDcm.createAssociation())
+        QMessageBox::critical(0,"Error", "Нет возможности установить ассоциацию с PACS сервер");
+    if (!QueryDcm.cgetDcm())
+        QMessageBox::critical(0,"Error", "Нет возможности установить соединение с PACS сервер");
+
 }
 
 
