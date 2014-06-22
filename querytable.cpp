@@ -51,6 +51,7 @@ void queryTable::writeDataTableSpace()
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     connect (ui->tableView,SIGNAL(clicked(QModelIndex)),this,SLOT(onClicked(QModelIndex)));
     connect(ui->pushButtonSearch,SIGNAL(clicked()),this,SLOT(ClickedFilterQuery()));
+    connect(ui->getPatientfromServer,SIGNAL(clicked()),mainwindow,SLOT(CgetPatient()));
      proxyModel = new QSortFilterProxyModel(this);
     proxyModel->setSourceModel(model);
     ui->tableView->setModel(proxyModel);
@@ -97,6 +98,12 @@ void queryTable::ClickedFilterQuery()
     }
     if (!setFilter)
         proxyModel->setFilterRegExp("");
+
+
+}
+
+void queryTable::CgetPatient()
+{
 
 
 }

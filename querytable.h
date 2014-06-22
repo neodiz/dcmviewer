@@ -32,6 +32,7 @@ private:
 private slots:
     void onClicked(QModelIndex index);
     void ClickedFilterQuery();
+    void CgetPatient();
 };
 
 #endif // QUERYTABLE_H

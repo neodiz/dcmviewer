@@ -1,7 +1,7 @@
 #include "dcmsend.h"
 #include "mainwindow.h"
 #include <QTableWidget>
-#include <tableshow.h>
+
 
 
 
@@ -78,6 +78,23 @@ bool DcmSend::queryDcm(QList <QString>  &QueryPatientName, QList <QString> &Quer
 
 bool DcmSend::cgetDcm()
 {
+    OFVector<RetrieveResponse*> findResponses;
+    DcmDataset req;
+    req.insertEmptyElement(DCM_PatientName);
+    req.insertEmptyElement(DCM_PatientID);
+    req.insertEmptyElement(DCM_AccessionNumber);
+
+    req.putAndInsertOFStringArray(DCM_QueryRetrieveLevel, "STUDY");
+    req.putAndInsertOFStringArray(DCM_StudyInstanceUID, "");
+    T_ASC_PresentationContextID presID = findUncompressedPC(UID_FINDPatientRootQueryRetrieveInformationModel, Sender);
+    if (presID == 0)
+    {
+        DCMNET_ERROR("There is no uncompressed presentation context for Study Root FIND");
+        return 1;
+    }
+    Sender.sendCGETRequest(presID,&req,&findResponses);
+    if (result.bad())
+        return false;
 
 
 }
