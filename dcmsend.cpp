@@ -81,9 +81,11 @@ bool DcmSend::cgetDcm()
     OFVector<RetrieveResponse*> findResponses;
     DcmDataset req;
 //    req.putAndInsertString(DCM_PatientName,"Nurmukhametov");
-//    req.putAndInsertString(DCM_SOPInstanceUID,"1.2.840.113619.2.30.1.1762533908.1851.1361025148.88");
+//    req.putAndInsertString(DCM_SOPInstanceUID,"1.3.12.2.1107.5.4.5.55301.30000013021404234482800000106.512");
+    req.putAndInsertString(DCM_SeriesInstanceUID,"1.3.12.2.1107.5.2.13.20561.30000005042216091690600002608");
+    req.putAndInsertString(DCM_QueryRetrieveLevel,"SERIES");
 //    req.putAndInsertString(DCM_SOPClassUID,"1.2.840.10008.5.1.4.1.1.4");
-    req.putAndInsertString(DCM_StudyInstanceUID,"1.2.840.113745.101000.1008000.38446.6272.7138759");
+//    req.putAndInsertString(DCM_StudyInstanceUID,"1.2.840.113745.101000.1008000.38446.6272.7138759");
 
     Sender.setStorageMode(DCMSCU_STORAGE_DISK);
     Sender.setStorageDir("/tmp/dcmstorage");
@@ -124,10 +126,13 @@ void DcmSend::setTransferSyntaxPresentationContext(QString taskDicom)
 
         ts.push_back(UID_JPEGLSLosslessTransferSyntax);
         ts.push_back(UID_JPEGLSLossyTransferSyntax);
-//        ts.push_back(UID_LittleEndianImplicitTransferSyntax);
+        ts.push_back(UID_LittleEndianImplicitTransferSyntax);
+        ts.push_back(UID_MRImageStorage);
+        ts.push_back(UID_XRayAngiographicImageStorage);
         Sender.addPresentationContext(UID_GETStudyRootQueryRetrieveInformationModel,ts);
         Sender.addPresentationContext(UID_GETPatientRootQueryRetrieveInformationModel,ts);
         Sender.addPresentationContext(UID_RETIRED_GETPatientStudyOnlyQueryRetrieveInformationModel,ts);
+        Sender.addPresentationContext(UID_MRImageStorage,ts);
     }
 }
 
