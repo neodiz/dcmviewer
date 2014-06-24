@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     showdicomform.cpp \
     querytable.cpp \
     querydata.cpp \
-    datatablemodel.cpp
+    datatablemodel.cpp \
+    serveredit.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -28,12 +29,14 @@ HEADERS  += mainwindow.h \
     showdicomform.h \
     querytable.h \
     querydata.h \
-    datatablemodel.h
+    datatablemodel.h \
+    serveredit.h
 
 
 FORMS    += mainwindow.ui \
     showdicomform.ui \
-    querytableform.ui
+    querytableform.ui \
+    servereditform.ui
 
 
 unix:!macx: LIBS = -ldcmnet -ldcmdata -lofstd -loflog -ldcmimgle -ldcmjpeg -lijg12 -lijg16 -lijg8
