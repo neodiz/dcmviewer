@@ -33,8 +33,7 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui \
     showdicomform.ui \
-    querytableform.ui \
-    ServerEdit.ui
+    querytableform.ui
 
 
 unix:!macx: LIBS = -ldcmnet -ldcmdata -lofstd -loflog -ldcmimgle -ldcmjpeg -lijg12 -lijg16 -lijg8
