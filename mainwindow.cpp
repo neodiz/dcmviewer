@@ -13,19 +13,19 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 
     ui->setupUi(this);
-    connect(ui->OKPushButton,SIGNAL(clicked()),this,SLOT(SenButton_clicked()));
-    connect(ui->DirectoryButton,SIGNAL(clicked()),this,SLOT(DIRPushButton_clicked()));
-    connect(ui->CancelPushButton,SIGNAL(clicked()),this,SLOT(close()));
-    connect(ui->CheckEchoPushButton,SIGNAL(clicked()),this,SLOT(SetEchoButton_clicked()));
-    connect(ui->WriteDataDicomButton,SIGNAL(clicked()),this,SLOT(SetWriteDatatoDicom()));
-    connect(ui->ShowPushButton,SIGNAL(clicked()),this,SLOT(ShowClassButton()));
-    connect(ui->QueryButton,SIGNAL(clicked()),this,SLOT(QueryButton()));
-    connect(ui->LAETLE,SIGNAL(editingFinished()),this,SLOT(LAetSet()));
-    connect(ui->GetButton,SIGNAL(clicked()),this,SLOT(GetTestSLOT()));
-    ui->progressBar->setVisible(false);
-    ui->WriteDataDicomButton->setVisible(false);
-    ui->ShowPushButton->setVisible(false);
-    LaetEdit = false;
+//    connect(ui->OKPushButton,SIGNAL(clicked()),this,SLOT(SenButton_clicked()));
+//    connect(ui->DirectoryButton,SIGNAL(clicked()),this,SLOT(DIRPushButton_clicked()));
+//    connect(ui->CancelPushButton,SIGNAL(clicked()),this,SLOT(close()));
+//    connect(ui->CheckEchoPushButton,SIGNAL(clicked()),this,SLOT(SetEchoButton_clicked()));
+//    connect(ui->WriteDataDicomButton,SIGNAL(clicked()),this,SLOT(SetWriteDatatoDicom()));
+//    connect(ui->ShowPushButton,SIGNAL(clicked()),this,SLOT(ShowClassButton()));
+//    connect(ui->QueryButton,SIGNAL(clicked()),this,SLOT(QueryButton()));
+//    connect(ui->LAETLE,SIGNAL(editingFinished()),this,SLOT(LAetSet()));
+//    connect(ui->GetButton,SIGNAL(clicked()),this,SLOT(GetTestSLOT()));
+//    ui->progressBar->setVisible(false);
+//    ui->WriteDataDicomButton->setVisible(false);
+//    ui->ShowPushButton->setVisible(false);
+//    LaetEdit = false;
 
 }
 
@@ -36,24 +36,24 @@ MainWindow::~MainWindow()
 
 void MainWindow::SenButton_clicked()
 {
-    if (!(ui->ServerLE->isModified()
-          ||ui->PortLE->isModified()
-          || ui->RAETLE->isModified()))
+//    if (!(ui->ServerLE->isModified()
+//          ||ui->PortLE->isModified()
+//          || ui->RAETLE->isModified()))
     {
         QMessageBox::critical(0,"Error", "Parameters not set");
         return;
     }
-    if (!LaetEdit)
-        ui->LAETLE->setText("SENDER");
-    DcmSend sendDicom(ui->ServerLE->text(),ui->PortLE->text(),ui->RAETLE->text(),ui->LAETLE->text());
-    ui->progressBar->setVisible(true);
-    ui->progressBar->setMinimum(0);
-    ui->progressBar->setMaximum(filename.returnCountFiles()-1);
-    sendDicom.setTransferSyntaxPresentationContext(filename.returnTransferSyntax(),filename.returnSopClass());
-    if (!sendDicom.initNetwork())
-        QMessageBox::critical(0,"Error", "Нет возможности установить соединение с PACS сервер");
-    if (!sendDicom.createAssociation())
-        QMessageBox::critical(0,"Error", "Нет возможности установить ассоциацию с PACS сервер");
+//    if (!LaetEdit)
+//        ui->LAETLE->setText("SENDER");
+//    DcmSend sendDicom(ui->ServerLE->text(),ui->PortLE->text(),ui->RAETLE->text(),ui->LAETLE->text());
+//    ui->progressBar->setVisible(true);
+//    ui->progressBar->setMinimum(0);
+//    ui->progressBar->setMaximum(filename.returnCountFiles()-1);
+//    sendDicom.setTransferSyntaxPresentationContext(filename.returnTransferSyntax(),filename.returnSopClass());
+//    if (!sendDicom.initNetwork())
+//        QMessageBox::critical(0,"Error", "Нет возможности установить соединение с PACS сервер");
+//    if (!sendDicom.createAssociation())
+/*        QMessageBox::critical(0,"Error", "Нет возможности установить ассоциацию с PACS сервер");
 
     QList<QString> files=filename.returnFiles();
     for(int i=0;i<filename.returnCountFiles();i++){
@@ -65,12 +65,12 @@ void MainWindow::SenButton_clicked()
     }
     QMessageBox::information(0,"Information","OK");
     ui->progressBar->setVisible(false);
-
+*/
 }
 
 void MainWindow::DIRPushButton_clicked()
 {
-    ui->UrlDicomImages->setText(QFileDialog::getExistingDirectory(0,"Directory Dialog",QDir::homePath()));
+/*    ui->UrlDicomImages->setText(QFileDialog::getExistingDirectory(0,"Directory Dialog",QDir::homePath()));
     filename.setURLpath(ui->UrlDicomImages->text());
 // Read Information of File
     QString Patient,PatientID,AccessionNumber;
@@ -84,12 +84,12 @@ void MainWindow::DIRPushButton_clicked()
     ui->ModalityLineEdit->setText(dcmSOPClassUIDToModality(filename.returnSopClass().toLatin1().data()));
     ui->WriteDataDicomButton->setVisible(true);
     ui->ShowPushButton->setVisible(true);
-
+*/
 }
 
 void MainWindow::SetEchoButton_clicked()
 {
-    if (!(ui->ServerLE->isModified()
+/*    if (!(ui->ServerLE->isModified()
           ||ui->PortLE->isModified()
           || ui->RAETLE->isModified()))
     {
@@ -112,17 +112,18 @@ void MainWindow::SetEchoButton_clicked()
         QMessageBox::information(0,"Information","OK");
         qDebug() << "OK";
     }
+    */
 }
 
 
 void MainWindow::SetWriteDatatoDicom()
 {
-   QList<QString> files=filename.returnFiles();
+/*   QList<QString> files=filename.returnFiles();
     for(int i=0;i<filename.returnCountFiles();i++)
         if (filename.WriteDataToFile(files.at(i),ui->FioLineEdit->text().toLatin1().data(),ui->NumPacIDLineEdit->text().toLatin1().data(),ui->AccessNumLineEdit->text().toLatin1().data()))
             ui->progressBar->setValue(i);
 
-
+*/
 }
 
 void MainWindow::ShowClassButton()
@@ -137,7 +138,7 @@ void MainWindow::ShowClassButton()
 
 void MainWindow::QueryButton()
 {
-    QList <QString> QueryPatientName,QueryPatientID,QueryAccessionNumber;
+/*    QList <QString> QueryPatientName,QueryPatientID,QueryAccessionNumber;
     queryTable *table= new queryTable();
     if (!(ui->ServerLE->isModified()
           ||ui->PortLE->isModified()
@@ -165,7 +166,7 @@ void MainWindow::QueryButton()
     table->writeDataTableSpace();
     table->show();
     }
-
+*/
 }
 
 void MainWindow::LAetSet()
@@ -175,7 +176,7 @@ void MainWindow::LAetSet()
 
 void MainWindow::GetTestSLOT()
 {
-    if (!(ui->ServerLE->isModified()
+/*    if (!(ui->ServerLE->isModified()
           ||ui->PortLE->isModified()
           || ui->RAETLE->isModified()))
     {
@@ -192,7 +193,7 @@ void MainWindow::GetTestSLOT()
         QMessageBox::critical(0,"Error", "Нет возможности установить ассоциацию с PACS сервер");
     if (!QueryDcm.cgetDcm())
         QMessageBox::critical(0,"Error", "Нет возможности установить соединение с PACS сервер");
-
+*/
 }
 
 
