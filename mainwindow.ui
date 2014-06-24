@@ -52,7 +52,7 @@
   <action name="actionServerList">
    <property name="icon">
     <iconset>
-     <normaloff>Servers.png</normaloff>Servers.png</iconset>
+     <normaloff>server.png</normaloff>server.png</iconset>
    </property>
    <property name="text">
     <string>Список Серверов PACS</string>
