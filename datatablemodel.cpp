@@ -20,6 +20,7 @@ QVariant DataTableModel::data(const QModelIndex &index, int role) const
             return list.at(index.row())->PatientID;
         if (index.column() == 2)
             return list.at(index.row())->AccessionNumber;
+
     }
     return QVariant();
 }
