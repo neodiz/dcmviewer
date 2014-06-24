@@ -6,6 +6,7 @@
 #include "dcmsend.h"
 #include <showdicomform.h>
 #include <querytable.h>
+#include "serveredit.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -207,6 +208,8 @@ void MainWindow::on_actionSearchPatient_triggered()
 
 void MainWindow::on_actionServerList_triggered()
 {
+    ServerEdit *ServerEditWidget= new ServerEdit();
+    ServerEditWidget->show();
 
 }
 
