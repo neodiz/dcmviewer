@@ -200,6 +200,8 @@ void MainWindow::GetTestSLOT()
 
 void MainWindow::on_actionSearchPatient_triggered()
 {
+    queryTable *table= new queryTable();
+    table->show();
 
 }
 
