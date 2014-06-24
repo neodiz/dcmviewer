@@ -64,7 +64,7 @@
      <normaloff>folder.png</normaloff>folder.png</iconset>
    </property>
    <property name="text">
-    <string>OpenImageFromDir</string>
+    <string>Открыть исследование из папки</string>
    </property>
   </action>
   <action name="actionEditPatientSettings">

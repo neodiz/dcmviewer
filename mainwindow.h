@@ -34,6 +34,10 @@ private slots:
     void LAetSet();
     void GetTestSLOT();
 
+    void on_actionSearchPatient_triggered();
+    void on_actionServerList_triggered();
+    void on_actionOpenImageFromDir_triggered();
+    void on_actionEditPatientSettings_triggered();
 };
 
 #endif // MAINWINDOW_H

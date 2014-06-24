@@ -197,3 +197,23 @@ void MainWindow::GetTestSLOT()
 }
 
 
+
+void MainWindow::on_actionSearchPatient_triggered()
+{
+
+}
+
+void MainWindow::on_actionServerList_triggered()
+{
+
+}
+
+void MainWindow::on_actionOpenImageFromDir_triggered()
+{
+
+}
+
+void MainWindow::on_actionEditPatientSettings_triggered()
+{
+
+}
