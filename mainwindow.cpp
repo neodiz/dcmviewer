@@ -215,6 +215,7 @@ void MainWindow::on_actionServerList_triggered()
 
 void MainWindow::on_actionOpenImageFromDir_triggered()
 {
+    QFileDialog::getExistingDirectory(0,"Directory Dialog",QDir::homePath());
 
 }
 
