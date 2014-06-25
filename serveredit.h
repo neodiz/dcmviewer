@@ -17,6 +17,9 @@ public:
 
 private:
     Ui::ServerEdit *ui;
+private slots:
+    void SaveXMLServerInfo();
+
 };
 
 #endif // SERVEREDIT_H

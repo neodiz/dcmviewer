@@ -23,7 +23,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_5">
+  <widget class="QPushButton" name="pushButtonCloseWindow">
    <property name="geometry">
     <rect>
      <x>230</x>
@@ -47,21 +47,21 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="pushButtonAddServer">
       <property name="text">
        <string>Добавить</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="pushButtonChangeServer">
       <property name="text">
        <string>Изменить</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="pushButtonRemoveServer">
       <property name="text">
        <string>Удалить</string>
       </property>

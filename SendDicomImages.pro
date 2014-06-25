@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     querytable.cpp \
     querydata.cpp \
     datatablemodel.cpp \
-    serveredit.cpp
+    serveredit.cpp \
+    serverinfoxml.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -30,7 +31,8 @@ HEADERS  += mainwindow.h \
     querytable.h \
     querydata.h \
     datatablemodel.h \
-    serveredit.h
+    serveredit.h \
+    serverinfoxml.h
 
 
 FORMS    += mainwindow.ui \
