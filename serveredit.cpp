@@ -9,6 +9,8 @@ ServerEdit::ServerEdit(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->pushButtonCloseWindow,SIGNAL(clicked()),this,SLOT(SaveXMLServerInfo()));
+    ServerInfoXML *readServerInfo = new ServerInfoXML();
+    readServerInfo->readFileXML();
 }
 
 ServerEdit::~ServerEdit()
@@ -18,9 +20,9 @@ ServerEdit::~ServerEdit()
 
 void ServerEdit::SaveXMLServerInfo()
 {
-    ServerInfoXML *writeServerInfo = new ServerInfoXML();
-    if (!writeServerInfo->writeFile())
-        qDebug() << "Cannot write file";
+//    ServerInfoXML *writeServerInfo = new ServerInfoXML();
+//    writeServerInfo->writeFileXML();
+ //       qDebug() << "Cannot write file";
     this->close();
 
 }

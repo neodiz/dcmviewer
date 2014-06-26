@@ -13,11 +13,13 @@ QVariant ServeInforDataModel::data(const QModelIndex &index, int role) const
         return QVariant();
     if (role == Qt::DisplayRole || role == Qt::EditRole){
         if (index.column() == 0)
-            return list.at(index.row())->PatientName;
+            return list.at(index.row())->Alias;
         if (index.column() == 1)
-            return list.at(index.row())->PatientID;
+            return list.at(index.row())->Address;
         if (index.column() == 2)
-            return list.at(index.row())->AccessionNumber;
+            return list.at(index.row())->Aet;
+        if (index.column() == 3)
+            return list.at(index.row())->port;
 
     }
     return QVariant();
@@ -29,13 +31,16 @@ bool ServeInforDataModel::setData(const QModelIndex &index, const QVariant &valu
     if (index.isValid() && role == Qt::EditRole) {
            // записываем данные из каждого столбца
            if(index.column()==0){
-               list.at(index.row())->PatientName = value.toString();
+               list.at(index.row())->Alias = value.toString();
            }
            if(index.column()==1){
-               list.at(index.row())->PatientID = value.toString();
+               list.at(index.row())->Address = value.toString();
            }
            if(index.column()==2){
-               list.at(index.row())->AccessionNumber = value.toString();
+               list.at(index.row())->Aet = value.toString();
+           }
+           if (index.column() == 3) {
+               list.at(index.row())->port = value.toInt();
            }
            return true;
        }

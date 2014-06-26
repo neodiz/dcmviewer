@@ -21,10 +21,9 @@ SOURCES += main.cpp\
     querydata.cpp \
     datatablemodel.cpp \
     serveredit.cpp \
-    serverxmlread.cpp \
-    serverxmlwrite.cpp \
     serveinfordatamodel.cpp \
-    serverinfoclass.cpp
+    serverinfoclass.cpp \
+    serverinfoxml.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -35,10 +34,9 @@ HEADERS  += mainwindow.h \
     querydata.h \
     datatablemodel.h \
     serveredit.h \
-    serverxmlread.h \
-    serverxmlwrite.h \
     serveinfordatamodel.h \
-    serverinfoclass.h
+    serverinfoclass.h \
+    serverinfoxml.h
 
 
 FORMS    += mainwindow.ui \
