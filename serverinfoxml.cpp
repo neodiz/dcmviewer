@@ -34,22 +34,22 @@ int i=0;
         if(token == QXmlStreamReader::StartElement) {
             if(xml.name() == "Alias") {
                 qDebug() << xml.readElementText();
-                ServerIfo.insert(Alias = xml.readElementText();
+//                ServerIfo.insert(Alias = xml.readElementText();
                 continue;
             }
             else if (xml.name() == "Address"){
                 qDebug() << xml.readElementText();
-                ServerIfo.at(i).Address =xml.readElementText();
+//                ServerIfo.at(i).Address =xml.readElementText();
                 continue;
             }
             else if (xml.name() == "AET") {
                 qDebug() << xml.readElementText();
-                ServerIfo.at(i).Aet=xml.readElementText();
+//                ServerIfo.at(i).Aet=xml.readElementText();
                 continue;
             }
             else if (xml.name() == "Port") {
                 qDebug() << xml.readElementText();
-                ServerIfo.at(i).port=xml.readElementText().toInt();
+//                ServerIfo.at(i).port=xml.readElementText().toInt();
                 i++;
                 continue;
             }

@@ -42,8 +42,8 @@
   </widget>
   <action name="actionSearchPatient">
    <property name="icon">
-    <iconset>
-     <normaloff>find.png</normaloff>find.png</iconset>
+    <iconset resource="ResourceMainWindowIcons.qrc">
+     <normaloff>:/Icons/find.png</normaloff>:/Icons/find.png</iconset>
    </property>
    <property name="text">
     <string>Поиск пациента на сервере PACS</string>
@@ -51,8 +51,8 @@
   </action>
   <action name="actionServerList">
    <property name="icon">
-    <iconset>
-     <normaloff>server.png</normaloff>server.png</iconset>
+    <iconset resource="ResourceMainWindowIcons.qrc">
+     <normaloff>:/Icons/server.png</normaloff>:/Icons/server.png</iconset>
    </property>
    <property name="text">
     <string>Список Серверов PACS</string>
@@ -60,8 +60,8 @@
   </action>
   <action name="actionOpenImageFromDir">
    <property name="icon">
-    <iconset>
-     <normaloff>folder.png</normaloff>folder.png</iconset>
+    <iconset resource="ResourceMainWindowIcons.qrc">
+     <normaloff>:/Icons/folder.png</normaloff>:/Icons/folder.png</iconset>
    </property>
    <property name="text">
     <string>Открыть исследование из папки</string>
@@ -69,8 +69,8 @@
   </action>
   <action name="actionEditPatientSettings">
    <property name="icon">
-    <iconset>
-     <normaloff>edit.png</normaloff>edit.png</iconset>
+    <iconset resource="ResourceMainWindowIcons.qrc">
+     <normaloff>:/Icons/edit.png</normaloff>:/Icons/edit.png</iconset>
    </property>
    <property name="text">
     <string>Изменить Исследование</string>
@@ -78,6 +78,8 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="ResourceMainWindowIcons.qrc"/>
+ </resources>
  <connections/>
 </ui>

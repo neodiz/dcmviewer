@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Server>
+    <Server1>
+        <Alias>Server1</Alias>
+        <Address>192.168.1.2</Address>
+        <AET>AET1</AET>
+	<Port>1000</Port>
+    </Server1>
+    <Server2>
+        <Alias>Server2</Alias>
+        <Address>192.168.1.3</Address>
+        <AET>AET2</AET>
+	<Port>1001</Port>
+    </Server2>
+</Server>

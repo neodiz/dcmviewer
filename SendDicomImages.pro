@@ -49,5 +49,9 @@ unix:!macx: LIBS = -ldcmnet -ldcmdata -lofstd -loflog -ldcmimgle -ldcmjpeg -lijg
 #-lIL -lILU -lILUT
 win32:LIBS += -ldcmnet -ldcmdata -lofstd -loflog -ldcmimgle -ldcmjpeg -lijg12 -lijg16 -lijg8
 
+RESOURCES += \
+    ResourceMainWindowIcons.qrc \
+    ServerInfoXml.qrc
+
 
 
