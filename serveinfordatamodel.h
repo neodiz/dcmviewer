@@ -2,12 +2,13 @@
 #define SERVEINFORDATAMODEL_H
 
 #include <QAbstractTableModel>
-
+#include "serverinfoclass.h"
 class ServeInforDataModel : public QAbstractTableModel
 {
     Q_OBJECT
 public:
     explicit ServeInforDataModel(QObject *parent = 0);
+    QList<QueryData *> list;
     QStringList header_data;
     QVariant data(const QModelIndex &index, int role) const;
     bool setData(const QModelIndex &index, const QVariant &value, int role);
