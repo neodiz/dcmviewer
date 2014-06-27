@@ -13,25 +13,25 @@ QVariant ServeInforDataModel::data(const QModelIndex &index, int role) const
         return QVariant();
     if (role == Qt::DisplayRole || role == Qt::EditRole){
         if (index.column() == 0)
-            return list.at(index.row())->Alias;
-        if (index.column() == 1)
+            return list.at(index.row()).Alias;
+/*        if (index.column() == 1)
             return list.at(index.row())->Address;
         if (index.column() == 2)
             return list.at(index.row())->Aet;
         if (index.column() == 3)
             return list.at(index.row())->port;
-
+*/
     }
     return QVariant();
 
 }
 
-bool ServeInforDataModel::setData(const QModelIndex &index, const QVariant &value, int role)
+/*bool ServeInforDataModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (index.isValid() && role == Qt::EditRole) {
            // записываем данные из каждого столбца
            if(index.column()==0){
-               list.at(index.row())->Alias = value.toString();
+               list.at(index.row()).Alias = value.toString();
            }
            if(index.column()==1){
                list.at(index.row())->Address = value.toString();
@@ -47,7 +47,7 @@ bool ServeInforDataModel::setData(const QModelIndex &index, const QVariant &valu
        return false;
 
 }
-
+*/
 int ServeInforDataModel::rowCount(const QModelIndex &parent) const
 {
     return list.size();
@@ -56,7 +56,7 @@ int ServeInforDataModel::rowCount(const QModelIndex &parent) const
 
 int ServeInforDataModel::columnCount(const QModelIndex &parent) const
 {
-    return 3;
+    return 1;
 
 }
 

@@ -5,10 +5,14 @@
 #include <QMessageBox>
 #include <QDebug>
 
+
+
 ServerInfoXML::ServerInfoXML()
 {
     file = new QFile("ServerInfo.xml");
+//    ServerInfoList = new QList <ServerInfoClass *> ;
 }
+
 
 bool ServerInfoXML::readFileXML()
 {
@@ -95,16 +99,22 @@ void ServerInfoXML::writeFileXML()
 
 }
 
+QList<ServerInfoClass > ServerInfoXML::returnServerInfo()
+{
+    return ServerInfoList;
+
+}
+
+
 void ServerInfoXML::setData(QList<QString> Alias, QList<QString> Address, QList<QString> Aet, QList<int> Port)
 {
     for (int i=0;i<Alias.size();i++){
-        ServerInfoClass *InfoServer = new ServerInfoClass ;
-        InfoServer->Alias = Alias.at(i);
-        InfoServer->Address = Address.at(i);
-        InfoServer->Aet = Aet.at(i);
-        InfoServer->port = Port.at(i);
-
-
+        ServerInfoClass InfoServer ;
+        InfoServer.Alias = Alias.at(i);
+        InfoServer.Address = Address.at(i);
+        InfoServer.Aet = Aet.at(i);
+        InfoServer.port = Port.at(i);
+        ServerInfoList.append(InfoServer);
     }
 }
 

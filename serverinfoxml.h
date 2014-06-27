@@ -9,10 +9,11 @@ public:
     ServerInfoXML();
     bool  readFileXML();
     void writeFileXML();
+    QList <ServerInfoClass > returnServerInfo();
 private:
     QFile* file;
-    QList <ServerInfoClass> *ServerInfo;
-    ServeInforDataModel Model;
+    QList <ServerInfoClass > ServerInfoList;
+
     void setData(QList<QString> Alias,QList<QString> Address,QList<QString> Aet,QList<int> Port);
 
 };
