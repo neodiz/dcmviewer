@@ -1,1 +1,9 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/icons">
+        <file>icons/edit.png</file>
+        <file>icons/find.png</file>
+        <file>icons/folder.png</file>
+        <file>icons/folder2.png</file>
+        <file>icons/server.png</file>
+    </qresource>
+</RCC>

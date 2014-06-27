@@ -4,21 +4,22 @@
 #include <QXmlStreamWriter>
 #include <QMessageBox>
 #include <QDebug>
-#include <serverinfoclass.h>
+
 ServerInfoXML::ServerInfoXML()
 {
     file = new QFile("ServerInfo.xml");
 }
 
-void ServerInfoXML::readFileXML()
+bool ServerInfoXML::readFileXML()
 {
     if (!file->open(QIODevice::ReadOnly | QIODevice::Text))
     {
-//         QMessageBox::critical(this, "QXSRExample::ReadXMLFile", "Couldn't open xml file", QMessageBox::Ok);
-         return;
+        //         QMessageBox::critical(this, "QXSRExample::ReadXMLFile", "Couldn't open xml file", QMessageBox::Ok);
+        return false;
     }
-QList<ServerInfoClass> ServerIfo;
-int i=0;
+    QList<QString> Alias,Address,Aet;
+    QList<int> Port;
+
     /* QXmlStreamReader takes any QIODevice. */
     QXmlStreamReader xml(file);
     /* We'll parse the XML until we reach end of it.*/
@@ -33,42 +34,40 @@ int i=0;
         /* If token is StartElement, we'll see if we can read it.*/
         if(token == QXmlStreamReader::StartElement) {
             if(xml.name() == "Alias") {
-                qDebug() << xml.readElementText();
-//                ServerIfo.insert(Alias = xml.readElementText();
+                Alias.append(xml.readElementText());
                 continue;
             }
             else if (xml.name() == "Address"){
-                qDebug() << xml.readElementText();
-//                ServerIfo.at(i).Address =xml.readElementText();
+                Address.append(xml.readElementText());
                 continue;
             }
             else if (xml.name() == "AET") {
-                qDebug() << xml.readElementText();
-//                ServerIfo.at(i).Aet=xml.readElementText();
+                Aet.append(xml.readElementText());
                 continue;
             }
             else if (xml.name() == "Port") {
-                qDebug() << xml.readElementText();
-//                ServerIfo.at(i).port=xml.readElementText().toInt();
-                i++;
+                Port.append(xml.readElementText().toInt());
                 continue;
             }
-
         }
     }
     if(xml.hasError())
-//        QMessageBox::critical(this, "QXSRExample::parseXML", xml.errorString(), QMessageBox::Ok);
+        return false;
+    //        QMessageBox::critical(this, "QXSRExample::parseXML", xml.errorString(), QMessageBox::Ok);
 
     //resets its internal state to the initial state.
     xml.clear();
+    setData(Alias,Address,Aet,Port);
+
+    return true;
 }
 
 void ServerInfoXML::writeFileXML()
 {
     if (!file->open(QIODevice::WriteOnly | QIODevice::Text))
     {
- //        QMessageBox::critical(this, "QXSRExample::WriteXMLFile", "Couldn't open anna.xml", QMessageBox::Ok);
-         return;
+        //        QMessageBox::critical(this, "QXSRExample::WriteXMLFile", "Couldn't open anna.xml", QMessageBox::Ok);
+        return;
     }
     QXmlStreamWriter xmlWriter(file);
     xmlWriter.setAutoFormatting(true);
@@ -85,12 +84,28 @@ void ServerInfoXML::writeFileXML()
     xmlWriter.writeTextElement("Address", "Server2");
     xmlWriter.writeTextElement("AET", "Server3");
     xmlWriter.writeEndElement();
+
     xmlWriter.writeEndElement();
 
     xmlWriter.writeEndDocument();
     file->close();
-//    if (file.error())
-//        QMessageBox::critical(this, "QXSRExample::parseXML", file.errorString(), QMessageBox::Ok);
+    //    if (file.error())
+    //        QMessageBox::critical(this, "QXSRExample::parseXML", file.errorString(), QMessageBox::Ok);
 
 
 }
+
+void ServerInfoXML::setData(QList<QString> Alias, QList<QString> Address, QList<QString> Aet, QList<int> Port)
+{
+    for (int i=0;i<Alias.size();i++){
+        ServerInfoClass *InfoServer = new ServerInfoClass ;
+        InfoServer->Alias = Alias.at(i);
+        InfoServer->Address = Address.at(i);
+        InfoServer->Aet = Aet.at(i);
+        InfoServer->port = Port.at(i);
+
+
+    }
+}
+
+

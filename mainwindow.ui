@@ -43,7 +43,7 @@
   <action name="actionSearchPatient">
    <property name="icon">
     <iconset resource="ResourceMainWindowIcons.qrc">
-     <normaloff>:/Icons/find.png</normaloff>:/Icons/find.png</iconset>
+     <normaloff>:/icons/icons/find.png</normaloff>:/icons/icons/find.png</iconset>
    </property>
    <property name="text">
     <string>Поиск пациента на сервере PACS</string>
@@ -52,7 +52,7 @@
   <action name="actionServerList">
    <property name="icon">
     <iconset resource="ResourceMainWindowIcons.qrc">
-     <normaloff>:/Icons/server.png</normaloff>:/Icons/server.png</iconset>
+     <normaloff>:/icons/icons/server.png</normaloff>:/icons/icons/server.png</iconset>
    </property>
    <property name="text">
     <string>Список Серверов PACS</string>
@@ -61,7 +61,7 @@
   <action name="actionOpenImageFromDir">
    <property name="icon">
     <iconset resource="ResourceMainWindowIcons.qrc">
-     <normaloff>:/Icons/folder.png</normaloff>:/Icons/folder.png</iconset>
+     <normaloff>:/icons/icons/folder2.png</normaloff>:/icons/icons/folder2.png</iconset>
    </property>
    <property name="text">
     <string>Открыть исследование из папки</string>
@@ -70,7 +70,7 @@
   <action name="actionEditPatientSettings">
    <property name="icon">
     <iconset resource="ResourceMainWindowIcons.qrc">
-     <normaloff>:/Icons/edit.png</normaloff>:/Icons/edit.png</iconset>
+     <normaloff>:/icons/icons/edit.png</normaloff>:/icons/icons/edit.png</iconset>
    </property>
    <property name="text">
     <string>Изменить Исследование</string>

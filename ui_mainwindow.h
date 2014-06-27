@@ -42,22 +42,22 @@ public:
         actionSearchPatient = new QAction(MainWindow);
         actionSearchPatient->setObjectName(QStringLiteral("actionSearchPatient"));
         QIcon icon;
-        icon.addFile(QStringLiteral("find.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QStringLiteral(":/icons/icons/find.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionSearchPatient->setIcon(icon);
         actionServerList = new QAction(MainWindow);
         actionServerList->setObjectName(QStringLiteral("actionServerList"));
         QIcon icon1;
-        icon1.addFile(QStringLiteral("Servers.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QStringLiteral(":/icons/icons/server.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionServerList->setIcon(icon1);
         actionOpenImageFromDir = new QAction(MainWindow);
         actionOpenImageFromDir->setObjectName(QStringLiteral("actionOpenImageFromDir"));
         QIcon icon2;
-        icon2.addFile(QStringLiteral("folder.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QStringLiteral(":/icons/icons/folder2.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionOpenImageFromDir->setIcon(icon2);
         actionEditPatientSettings = new QAction(MainWindow);
         actionEditPatientSettings->setObjectName(QStringLiteral("actionEditPatientSettings"));
         QIcon icon3;
-        icon3.addFile(QStringLiteral("edit.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon3.addFile(QStringLiteral(":/icons/icons/edit.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionEditPatientSettings->setIcon(icon3);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
@@ -88,7 +88,7 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Send Images", 0));
         actionSearchPatient->setText(QApplication::translate("MainWindow", "\320\237\320\276\320\270\321\201\320\272 \320\277\320\260\321\206\320\270\320\265\320\275\321\202\320\260 \320\275\320\260 \321\201\320\265\321\200\320\262\320\265\321\200\320\265 PACS", 0));
         actionServerList->setText(QApplication::translate("MainWindow", "\320\241\320\277\320\270\321\201\320\276\320\272 \320\241\320\265\321\200\320\262\320\265\321\200\320\276\320\262 PACS", 0));
-        actionOpenImageFromDir->setText(QApplication::translate("MainWindow", "OpenImageFromDir", 0));
+        actionOpenImageFromDir->setText(QApplication::translate("MainWindow", "\320\236\321\202\320\272\321\200\321\213\321\202\321\214 \320\270\321\201\321\201\320\273\320\265\320\264\320\276\320\262\320\260\320\275\320\270\320\265 \320\270\320\267 \320\277\320\260\320\277\320\272\320\270", 0));
         actionEditPatientSettings->setText(QApplication::translate("MainWindow", "\320\230\320\267\320\274\320\265\320\275\320\270\321\202\321\214 \320\230\321\201\321\201\320\273\320\265\320\264\320\276\320\262\320\260\320\275\320\270\320\265", 0));
         toolBar->setWindowTitle(QApplication::translate("MainWindow", "toolBar", 0));
     } // retranslateUi
