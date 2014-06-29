@@ -4,7 +4,7 @@
         <Alias>Server1</Alias>
         <Address>192.168.1.2</Address>
         <AET>AET1</AET>
-	<Port>1000</Port>
+        <Port>1002</Port>
     </Server1>
     <Server2>
         <Alias>Server2</Alias>

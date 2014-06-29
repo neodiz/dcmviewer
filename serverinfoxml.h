@@ -8,7 +8,7 @@ class ServerInfoXML
 public:
     ServerInfoXML();
     bool  readFileXML();
-    void writeFileXML();
+    void writeFileXML(ServeInforDataModel *FromInsideModel);
     QList <ServerInfoClass > returnServerInfo();
 private:
     QFile* file;

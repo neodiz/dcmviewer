@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     serveredit.cpp \
     serveinfordatamodel.cpp \
     serverinfoclass.cpp \
-    serverinfoxml.cpp
+    serverinfoxml.cpp \
+    editaddformserver.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -36,13 +37,15 @@ HEADERS  += mainwindow.h \
     serveredit.h \
     serveinfordatamodel.h \
     serverinfoclass.h \
-    serverinfoxml.h
+    serverinfoxml.h \
+    editaddformserver.h
 
 
 FORMS    += mainwindow.ui \
     showdicomform.ui \
     querytableform.ui \
-    servereditform.ui
+    servereditform.ui \
+    editaddformserver.ui
 
 
 unix:!macx: LIBS = -ldcmnet -ldcmdata -lofstd -loflog -ldcmimgle -ldcmjpeg -lijg12 -lijg16 -lijg8

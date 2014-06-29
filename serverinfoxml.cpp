@@ -10,7 +10,6 @@
 ServerInfoXML::ServerInfoXML()
 {
     file = new QFile("ServerInfo.xml");
-//    ServerInfoList = new QList <ServerInfoClass *> ;
 }
 
 
@@ -66,7 +65,7 @@ bool ServerInfoXML::readFileXML()
     return true;
 }
 
-void ServerInfoXML::writeFileXML()
+void ServerInfoXML::writeFileXML(ServeInforDataModel *FromInsideModel)
 {
     if (!file->open(QIODevice::WriteOnly | QIODevice::Text))
     {
@@ -78,19 +77,16 @@ void ServerInfoXML::writeFileXML()
     xmlWriter.writeStartDocument();
     xmlWriter.writeStartElement("Server");
     //add Elements
-    xmlWriter.writeStartElement("Server1");
-    xmlWriter.writeTextElement("Alias", "Server1");
-    xmlWriter.writeTextElement("Address", "Server2");
-    xmlWriter.writeTextElement("AET", "Server3");
-    xmlWriter.writeEndElement();
-    xmlWriter.writeStartElement("Server2");
-    xmlWriter.writeTextElement("Alias", "Server1");
-    xmlWriter.writeTextElement("Address", "Server2");
-    xmlWriter.writeTextElement("AET", "Server3");
-    xmlWriter.writeEndElement();
+    for(int i=0;i<FromInsideModel->list.size();i++){
+        xmlWriter.writeStartElement(FromInsideModel->list.at(i).Alias);
+        xmlWriter.writeTextElement("Alias",FromInsideModel->list.at(i).Alias);
+        xmlWriter.writeTextElement("Address",FromInsideModel->list.at(i).Address);
+        xmlWriter.writeTextElement("AET", FromInsideModel->list.at(i).Aet);
+        xmlWriter.writeTextElement("Port", QString::number(FromInsideModel->list.at(i).port));
+        xmlWriter.writeEndElement();
+    }
 
     xmlWriter.writeEndElement();
-
     xmlWriter.writeEndDocument();
     file->close();
     //    if (file.error())
