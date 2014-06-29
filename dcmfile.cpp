@@ -150,4 +150,5 @@ bool DcmFile::WriteDataToFile(QString UrlPathDicom,OFString Patient,OFString Num
     result = DcmFilename.saveFile(UrlPathDicom.toLatin1().data());
     if (result.bad())
         return false;
+    return true;
 }

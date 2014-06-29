@@ -1,30 +1,47 @@
-#include "dcmsend.h"
-#include "mainwindow.h"
-#include <QTableWidget>
+#include "dcmserver.h"
 
 
-
-
-DcmSend::DcmSend(QString ipAddress, QString portAddress, QString aeAddress, QString aeLocal)
+DcmServer::DcmServer(QString ipAddress, int portAddress, QString aeAddress, QString aeLocal)
 {
-
     Sender.setAETitle(aeLocal.toLatin1().data());
     Sender.setPeerAETitle(aeAddress.toLatin1().data());
     Sender.setPeerHostName(ipAddress.toLatin1().data());
-    Sender.setPeerPort(portAddress.toUInt());
+    Sender.setPeerPort(portAddress);
     presID = 0;
+    msg = NULL;
+    statusDetail = NULL;
+
 }
 
-bool DcmSend::echoSend()
+bool DcmServer::echoSend()
 {
     result =Sender.sendECHORequest(0);
     if (result.bad())
         return false;
     return true;
+
 }
 
+bool DcmServer::initNetwork()
+{
+    result =Sender.initNetwork();
+    if (result.bad()){
+        return false;
+    }
+    return true;
 
-bool DcmSend::senFile(QString UrlPathDicom)
+}
+
+bool DcmServer::createAssociation()
+{
+    result = Sender.negotiateAssociation();
+    if (result.bad())
+        return false;
+    return true;
+
+}
+
+bool DcmServer::senFile(QString UrlPathDicom)
 {
     result = Sender.sendSTORERequest(presID,UrlPathDicom.toLatin1().data(),NULL,msg,statusDetail,statusCode);
     if (result.good())
@@ -34,10 +51,8 @@ bool DcmSend::senFile(QString UrlPathDicom)
 
 }
 
-
-bool DcmSend::queryDcm(QList <QString>  &QueryPatientName, QList <QString> &QueryPatientID, QList <QString> &QueryAccessionNumber)
+bool DcmServer::queryDcm(QList<QueryData> *Patients)
 {
-
     OFVector<QRResponse*> findResponses;
     DcmDataset req;
     req.insertEmptyElement(DCM_PatientName);
@@ -49,7 +64,7 @@ bool DcmSend::queryDcm(QList <QString>  &QueryPatientName, QList <QString> &Quer
     if (presID == 0)
     {
         DCMNET_ERROR("There is no uncompressed presentation context for Study Root FIND");
-        return 1;
+        return false;
     }
     result = Sender.sendFINDRequest(presID, &req,&findResponses);
 
@@ -61,22 +76,21 @@ bool DcmSend::queryDcm(QList <QString>  &QueryPatientName, QList <QString> &Quer
     OFString NamePatient;
     OFString PatientID;
     OFString AccessionNumber;
-    for (int i=0;i<findResponses.size();i++){
+    for (unsigned int i=0;i<findResponses.size();i++){
         if (findResponses.at(i)->m_dataset != NULL){
 
             result= findResponses.at(i)->m_dataset->findAndGetOFString(DCM_PatientName,NamePatient);
             result= findResponses.at(i)->m_dataset->findAndGetOFString(DCM_AccessionNumber,AccessionNumber);
             result= findResponses.at(i)->m_dataset->findAndGetOFString(DCM_PatientID,PatientID);
-            QueryPatientName << NamePatient.data();
-            QueryPatientID << PatientID.data();
-            QueryAccessionNumber << AccessionNumber.data();
+            Patients->append(QueryData(NamePatient.data(),PatientID.data(),AccessionNumber.data()));
         }
     }
     return true;
 
+
 }
 
-bool DcmSend::cgetDcm()
+bool DcmServer::cgetDcm()
 {
     OFVector<RetrieveResponse*> findResponses;
     DcmDataset req;
@@ -105,13 +119,13 @@ bool DcmSend::cgetDcm()
 
 }
 
-void DcmSend::setTransferSyntaxPresentationContext(QString transferSintax,QString SopClass)
+void DcmServer::setTransferSyntaxPresentationContext(QString transferSintax, QString SopClass)
 {
-   ts.push_back(transferSintax.toLatin1().data());
-   Sender.addPresentationContext(SopClass.toLatin1().data(),ts);
-
+    ts.push_back(transferSintax.toLatin1().data());
+    Sender.addPresentationContext(SopClass.toLatin1().data(),ts);
 }
-void DcmSend::setTransferSyntaxPresentationContext(QString taskDicom)
+
+void DcmServer::setTransferSyntaxPresentationContext(QString taskDicom)
 {
     if (taskDicom == "echo"){
       ts.push_back(UID_LittleEndianImplicitTransferSyntax);
@@ -136,30 +150,13 @@ void DcmSend::setTransferSyntaxPresentationContext(QString taskDicom)
     }
 }
 
-
-bool DcmSend::initNetwork()
-{
-    result =Sender.initNetwork();
-    if (result.bad()){
-        return false;
-    }
-    return true;
-}
-
-bool DcmSend::createAssociation()
-{
-    result = Sender.negotiateAssociation();
-    if (result.bad())
-        return false;
-    return true;
-
-}
-
-DcmSend::~DcmSend()
+DcmServer::~DcmServer()
 {
     Sender.closeAssociation(DCMSCU_RELEASE_ASSOCIATION);
+
 }
-Uint8 DcmSend::findUncompressedPC (const OFString& sopClass,DcmSCU& Sender)
+
+Uint8 DcmServer::findUncompressedPC(const OFString &sopClass, DcmSCU &Sender)
 {
     Uint8 pc;
     pc = Sender.findPresentationContextID(sopClass, UID_LittleEndianExplicitTransferSyntax);
@@ -168,6 +165,5 @@ Uint8 DcmSend::findUncompressedPC (const OFString& sopClass,DcmSCU& Sender)
     if (pc == 0)
         pc = Sender.findPresentationContextID(sopClass, UID_LittleEndianImplicitTransferSyntax);
     return pc;
+
 }
-
-

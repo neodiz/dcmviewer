@@ -65,7 +65,7 @@ bool ServerInfoXML::readFileXML()
     return true;
 }
 
-void ServerInfoXML::writeFileXML(ServeInforDataModel *FromInsideModel)
+void ServerInfoXML::writeFileXML(ModelServerInfo *FromInsideModel)
 {
     if (!file->open(QIODevice::WriteOnly | QIODevice::Text))
     {

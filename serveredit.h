@@ -1,6 +1,6 @@
 #ifndef SERVEREDIT_H
 #define SERVEREDIT_H
-#include "serveinfordatamodel.h"
+#include "modelserverinfo.h"
 #include "editaddformserver.h"
 #include <QWidget>
 
@@ -15,11 +15,13 @@ class ServerEdit : public QWidget
 public:
     explicit ServerEdit(QWidget *parent = 0);
     ~ServerEdit();
+    void setModelServerInfo(ModelServerInfo *model);
 
 private:
     Ui::ServerEdit *ui;
-    ServeInforDataModel *ServerInfoDataModel;
+    ModelServerInfo *ServerInfoDataModel;
     QModelIndex indexModel;
+    void checkEchoServer();
 private slots:
     void SaveXMLServerInfo();
     void SlotClicketServer(QModelIndex index);

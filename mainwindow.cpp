@@ -3,7 +3,7 @@
 #include <QMessageBox>
 #include <QDebug>
 #include <QFileDialog>
-#include "dcmsend.h"
+#include "serverinfoxml.h"
 #include <showdicomform.h>
 #include <querytable.h>
 #include "serveredit.h"
@@ -27,6 +27,14 @@ MainWindow::MainWindow(QWidget *parent) :
 //    ui->WriteDataDicomButton->setVisible(false);
 //    ui->ShowPushButton->setVisible(false);
 //    LaetEdit = false;
+    QList<ServerInfoClass >  ServerData ;
+    ServerInfoDataModel = new ModelServerInfo;
+    ServerInfoXML *readServerInfo = new ServerInfoXML();
+    readServerInfo->readFileXML();
+    ServerData = readServerInfo->returnServerInfo();
+    // Заполняем модель данными
+    for (int i =0;i<ServerData.size();i++)
+        ServerInfoDataModel->list= (ServerData);
 
 }
 
@@ -202,6 +210,7 @@ void MainWindow::GetTestSLOT()
 void MainWindow::on_actionSearchPatient_triggered()
 {
     queryTable *table= new queryTable();
+    table->setModelServerInfo(ServerInfoDataModel);
     table->show();
 
 }
@@ -209,6 +218,7 @@ void MainWindow::on_actionSearchPatient_triggered()
 void MainWindow::on_actionServerList_triggered()
 {
     ServerEdit *ServerEditWidget= new ServerEdit();
+    ServerEditWidget->setModelServerInfo(ServerInfoDataModel);
     ServerEditWidget->show();
 
 }

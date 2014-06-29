@@ -2,6 +2,8 @@
 #include "ui_querytableform.h"
 #include "querydata.h"
 #include <QDebug>
+#include "dcmserver.h"
+#include <modelpatientinfo.h>
 
 
 queryTable::queryTable(QWidget *parent) :
@@ -9,14 +11,26 @@ queryTable::queryTable(QWidget *parent) :
     ui(new Ui::queryTable)
 {
     ui->setupUi(this);
+    model = new ModelPatientInfo;
+    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+
+    connect (ui->tableView,SIGNAL(clicked(QModelIndex)),this,SLOT(onClicked(QModelIndex)));
+    connect(ui->pushButtonSearch,SIGNAL(clicked()),this,SLOT(ClickedFilterQuery()));
+    connect(ui->getPatientfromServer,SIGNAL(clicked()),this,SLOT(CgetPatient()));
+    ui->ComboBoxServerInfo->setEditable(true);
+    ui->ComboBoxServerInfo->setEditable(false);
+
 }
 
 bool queryTable::SetPatientName(QList<QString> Patient)
 {
-   QueryPatientName= Patient;
-   if (QueryPatientName.isEmpty())
-       return false ;
-   return true;
+    QueryPatientName= Patient;
+    if (QueryPatientName.isEmpty())
+        return false ;
+    return true;
 
 }
 
@@ -39,22 +53,14 @@ bool queryTable::setAccessionNumber(QList<QString> AccessionNumber)
 void queryTable::writeDataTableSpace()
 {
 
-    for(int i=0;i<QueryPatientName.size();i++){
-        QueryData *data = new QueryData();
-        data->PatientName= QueryPatientName.at(i);
-        data->PatientID= QueryPatientID.at(i);
-        data->AccessionNumber= QueryAccessionNumber.at(i);
-        model->list.append(data);
-    }
-    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
-    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    connect (ui->tableView,SIGNAL(clicked(QModelIndex)),this,SLOT(onClicked(QModelIndex)));
-    connect(ui->pushButtonSearch,SIGNAL(clicked()),this,SLOT(ClickedFilterQuery()));
-    connect(ui->getPatientfromServer,SIGNAL(clicked()),this,SLOT(CgetPatient()));
-     proxyModel = new QSortFilterProxyModel(this);
-    proxyModel->setSourceModel(model);
-    ui->tableView->setModel(proxyModel);
+}
+
+void queryTable::setModelServerInfo(ModelServerInfo *model)
+{
+    ServerInfoModel = model;
+    setComboBoxItems();
+
+
 }
 
 queryTable::~queryTable()
@@ -62,9 +68,38 @@ queryTable::~queryTable()
     delete ui;
 }
 
+void queryTable::setComboBoxItems()
+{
+    for (unsigned int i=0;i<ServerInfoModel->list.size();i++)
+        ui->ComboBoxServerInfo->addItem(ServerInfoModel->list.at(i).Alias);
+}
+
+bool queryTable::queryServer()
+{
+    DcmServer *QueryDcm = new DcmServer(ServerInfoModel->list.at(ui->ComboBoxServerInfo->currentIndex()).Address,
+                                        ServerInfoModel->list.at(ui->ComboBoxServerInfo->currentIndex()).port,
+                                        ServerInfoModel->list.at(ui->ComboBoxServerInfo->currentIndex()).Aet,
+                                        QString("Sender"));
+    QueryDcm->setTransferSyntaxPresentationContext(QString("query"));
+    QList<QueryData> *Patients = new QList<QueryData>;
+    if (QueryDcm->initNetwork()){
+        if (QueryDcm->createAssociation())
+            if(QueryDcm->queryDcm(Patients)){
+                for (int i=0;i<Patients->size();i++)
+                    model->list.append(Patients->at(i));
+                return true;
+
+            }
+    }
+    else {
+        return false;
+    }
+
+}
+
 void queryTable::onClicked(QModelIndex index)
 {
-    qDebug() << model->list.at(index.row())->PatientName;
+    qDebug() << model->list.at(index.row()).PatientName;
 
 }
 
@@ -97,8 +132,24 @@ void queryTable::ClickedFilterQuery()
         setFilter = true;
     }
     if (!setFilter)
-        proxyModel->setFilterRegExp("");
+        if (!model->list.empty())
+            proxyModel->setFilterRegExp("");
+        else{
 
+        if(queryServer()){
+            //               proxyModel = new QSortFilterProxyModel(this);
+            //               proxyModel->setSourceModel(model);
+            proxyModel = new QSortFilterProxyModel(this);
+            proxyModel->setSourceModel(model);
+            ui->tableView->setModel(proxyModel);
+
+
+        }
+        else
+            QMessageBox::critical(0,"Error", "Нет возможности установить соединение с PACS сервер");
+
+        //
+    }
 
 }
 

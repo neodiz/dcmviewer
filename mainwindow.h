@@ -8,6 +8,7 @@
 #include <QImage>
 #include <qdicomimage.h>
 #include <QPainter>
+#include "modelserverinfo.h"
 namespace Ui {
 class MainWindow;
 }
@@ -23,6 +24,7 @@ public:
 private:
     Ui::MainWindow *ui;
     bool LaetEdit;
+    ModelServerInfo *ServerInfoDataModel;
 
 private slots:
     void SenButton_clicked();

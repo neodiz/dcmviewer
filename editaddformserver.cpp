@@ -30,7 +30,7 @@ void EditAddFormServer::setQLinesForEditUser()
     ui->lineEditPort->setText(QString::number(model->list.at(index.row()).port));
 }
 
-void EditAddFormServer::setModelServerInfo(ServeInforDataModel *FromInsideModel)
+void EditAddFormServer::setModelServerInfo(ModelServerInfo *FromInsideModel)
 {
     model = FromInsideModel;
 }

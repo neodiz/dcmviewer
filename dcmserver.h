@@ -1,5 +1,5 @@
-#ifndef DCMSEND_H
-#define DCMSEND_H
+#ifndef DCMSERVER_H
+#define DCMSERVER_H
 #include "dcmtk/ofstd/ofstd.h"
 #include "dcmtk/ofstd/ofconapp.h"
 #include "dcmtk/ofstd/ofstring.h"
@@ -23,40 +23,32 @@
 #include <QDir>
 #include <QDebug>
 #include <QSize>
+#include <modelpatientinfo.h>
 
-struct Patient {
-    QString NamePatient;
-    QString AccessionNumber;
-    QString PatientID;
-};
-
-class DcmSend
+class DcmServer
 {
 public:
-    DcmSend(QString ipAddress,QString portAddress,QString aeAddress,QString aeLocal);
-    DcmSCU  Sender;
+    DcmServer(QString ipAddress,int portAddress,QString aeAddress,QString aeLocal);
     bool echoSend();
     bool initNetwork();
     bool createAssociation();
     bool senFile(QString UrlPathDicom);
-    bool queryDcm(QList<QString> &QueryPatientName,QList<QString> &QueryPatientID,QList<QString> &QueryAccessionNumber);
+    bool queryDcm(QList<QueryData> *Patients);
     bool cgetDcm();
     void setTransferSyntaxPresentationContext(QString transferSintax,QString SopClass);
     void setTransferSyntaxPresentationContext(QString taskDicom);
-    ~DcmSend();
     QSize s;
+    ~DcmServer();
 private:
     T_ASC_PresentationContextID presID ;
-    DcmDataset *statusDetail = NULL;
+    DcmDataset *statusDetail;
     OFCondition result;
     OFList<OFString> ts;
     OFString soapClass ;
-    DcmDataset *msg = NULL;
+    DcmDataset *msg ;
     Uint16 statusCode;
+    DcmSCU  Sender;
     Uint8 findUncompressedPC(const OFString& sopClass,DcmSCU& Sender);
-
-
-
 };
 
-#endif // DCMSEND_H
+#endif // DCMSERVER_H

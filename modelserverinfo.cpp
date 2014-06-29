@@ -1,11 +1,11 @@
-#include "serveinfordatamodel.h"
+#include "modelserverinfo.h"
 
-ServeInforDataModel::ServeInforDataModel(QObject *parent) :
+ModelServerInfo::ModelServerInfo(QObject *parent) :
     QAbstractTableModel(parent)
 {
 }
 
-QVariant ServeInforDataModel::data(const QModelIndex &index, int role) const
+QVariant ModelServerInfo::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
         return QVariant();
@@ -23,26 +23,12 @@ QVariant ServeInforDataModel::data(const QModelIndex &index, int role) const
 
     }
     return QVariant();
-
 }
 
-bool ServeInforDataModel::setData(const QModelIndex &index, const QVariant &value, int role)
+bool ModelServerInfo::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (index.isValid() && role == Qt::EditRole) {
            // записываем данные из каждого столбца
-/*           if(index.column()==0){
-               list.value(index.row()).Alias = value.toString();
-           }
-           if(index.column()==1){
-               list.value(index.row()).Address = value.toString();
-           }
-           if(index.column()==2){
-               list.value(index.row()).Aet = value.toString();
-           }
-           if (index.column() == 3) {
-               list.value(index.row()).port = value.toInt();
-           }*/
-
         list.replace(index.row(),list.value(index.row()));
         emit dataChanged(index, index);
            return true;
@@ -51,7 +37,7 @@ bool ServeInforDataModel::setData(const QModelIndex &index, const QVariant &valu
 
 }
 
-bool ServeInforDataModel::removeRow(int row, const QModelIndex &parent)
+bool ModelServerInfo::removeRow(int row, const QModelIndex &parent)
 {
     beginRemoveRows(QModelIndex(), row, row);
     list.removeAt(row);
@@ -60,7 +46,7 @@ bool ServeInforDataModel::removeRow(int row, const QModelIndex &parent)
 
 }
 
-bool ServeInforDataModel::insertRow(int row, const QModelIndex &parent,ServerInfoClass newServer)
+bool ModelServerInfo::insertRow(int row, const QModelIndex &parent, ServerInfoClass newServer)
 {
     beginInsertRows(QModelIndex(),row,row);
     list.append(newServer);
@@ -68,7 +54,7 @@ bool ServeInforDataModel::insertRow(int row, const QModelIndex &parent,ServerInf
     return true;
 }
 
-bool ServeInforDataModel::editRow(int row, const QModelIndex &parent, ServerInfoClass newServer)
+bool ModelServerInfo::editRow(int row, const QModelIndex &parent, ServerInfoClass newServer)
 {
     beginResetModel();
     list[row]= newServer;
@@ -77,20 +63,17 @@ bool ServeInforDataModel::editRow(int row, const QModelIndex &parent, ServerInfo
 
 }
 
-
-int ServeInforDataModel::rowCount(const QModelIndex &parent) const
+int ModelServerInfo::rowCount(const QModelIndex &parent) const
 {
     return list.size();
-
 }
 
-int ServeInforDataModel::columnCount(const QModelIndex &parent) const
+int ModelServerInfo::columnCount(const QModelIndex &parent) const
 {
     return 4;
-
 }
 
-QVariant ServeInforDataModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant ModelServerInfo::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (role != Qt::DisplayRole)
         return QVariant();
@@ -99,14 +82,11 @@ QVariant ServeInforDataModel::headerData(int section, Qt::Orientation orientatio
     }
     else {
         return QString("%1").arg(section +1);
-    }
-
 }
-
-Qt::ItemFlags ServeInforDataModel::flags(const QModelIndex &index) const
+}
+Qt::ItemFlags ModelServerInfo::flags(const QModelIndex &index) const
 {
     if (!index.isValid())
         return Qt::ItemIsEnabled;
     return QAbstractItemModel::flags(index) | Qt::ItemIsEditable;
-
 }

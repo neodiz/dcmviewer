@@ -4,6 +4,7 @@
 class QueryData
 {
 public:
+    QueryData(QString PatientNameInput,QString PatientIDInput,QString AccessionNumberInput);
     QueryData();
     QString PatientName;
     QString PatientID;

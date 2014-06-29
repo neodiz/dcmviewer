@@ -3,9 +3,10 @@
 
 #include <QWidget>
 #include <QModelIndex>
-#include "datatablemodel.h"
 #include <QSortFilterProxyModel>
-
+#include <modelserverinfo.h>
+#include <modelpatientinfo.h>
+#include <QMessageBox>
 namespace Ui {
 class queryTable;
 }
@@ -20,6 +21,7 @@ public:
     bool setPatientID(QList <QString> PatientID);
     bool setAccessionNumber(QList<QString> AccessionNumber);
     void writeDataTableSpace();
+    void setModelServerInfo(ModelServerInfo *model);
     ~queryTable();
 
 private:
@@ -27,8 +29,11 @@ private:
     QList <QString> QueryPatientName;
     QList <QString> QueryPatientID;
     QList <QString> QueryAccessionNumber;
-    DataTableModel* model= new DataTableModel;
+    ModelPatientInfo *model;
+    ModelServerInfo *ServerInfoModel;
     QSortFilterProxyModel *proxyModel;
+    void setComboBoxItems();
+    bool queryServer();
 private slots:
     void onClicked(QModelIndex index);
     void ClickedFilterQuery();

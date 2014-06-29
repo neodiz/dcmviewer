@@ -14,31 +14,31 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    dcmsend.cpp \
     dcmfile.cpp \
     showdicomform.cpp \
     querytable.cpp \
     querydata.cpp \
-    datatablemodel.cpp \
     serveredit.cpp \
-    serveinfordatamodel.cpp \
     serverinfoclass.cpp \
     serverinfoxml.cpp \
-    editaddformserver.cpp
+    editaddformserver.cpp \
+    dcmserver.cpp \
+    modelserverinfo.cpp \
+    modelpatientinfo.cpp
 
 
 HEADERS  += mainwindow.h \
-    dcmsend.h \
     dcmfile.h \
     showdicomform.h \
     querytable.h \
     querydata.h \
-    datatablemodel.h \
     serveredit.h \
-    serveinfordatamodel.h \
     serverinfoclass.h \
     serverinfoxml.h \
-    editaddformserver.h
+    editaddformserver.h \
+    dcmserver.h \
+    modelserverinfo.h \
+    modelpatientinfo.h
 
 
 FORMS    += mainwindow.ui \

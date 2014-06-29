@@ -1,6 +1,6 @@
 #ifndef EDITADDFORMSERVER_H
 #define EDITADDFORMSERVER_H
-#include "serveinfordatamodel.h"
+#include "modelserverinfo.h"
 #include <QWidget>
 
 namespace Ui {
@@ -16,12 +16,12 @@ public:
     ~EditAddFormServer();
     void editLabelStartInfo(QString text);
     void setQLinesForEditUser();
-    void setModelServerInfo(ServeInforDataModel *FromInsideModel);
+    void setModelServerInfo(ModelServerInfo *FromInsideModel);
     void setIndexModel(QModelIndex IndexModel);
     int addEdit;
 private:
     Ui::EditAddFormServer *ui;
-    ServeInforDataModel *model;
+    ModelServerInfo *model;
     QModelIndex index;
     void addServer();
     void editServer();

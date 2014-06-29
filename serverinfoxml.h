@@ -2,13 +2,13 @@
 #define SERVERINFOXML_H
 #include <QFile>
 #include <serverinfoclass.h>
-#include "serveinfordatamodel.h"
+#include "modelserverinfo.h"
 class ServerInfoXML
 {
 public:
     ServerInfoXML();
     bool  readFileXML();
-    void writeFileXML(ServeInforDataModel *FromInsideModel);
+    void writeFileXML(ModelServerInfo *FromInsideModel);
     QList <ServerInfoClass > returnServerInfo();
 private:
     QFile* file;
