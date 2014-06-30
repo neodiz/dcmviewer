@@ -1,13 +1,14 @@
 #include "querydata.h"
 
-QueryData::QueryData(QString PatientNameInput, QString PatientIDInput, QString AccessionNumberInput,QString StudyInstanceUIDInput,QString ModalityInput)
+
+QueryData::QueryData(QString PatientNameInput, QString PatientIDInput, QString AccessionNumberInput, QString ModalityUIDInput, QString StudyDateInput, QString StudyInstanceUIDInput)
 {
     PatientName = PatientNameInput;
     PatientID= PatientIDInput;
     AccessionNumber= AccessionNumberInput;
     StudyInstanceUID= StudyInstanceUIDInput;
-    Modality = ModalityInput;
-
+    Modality = ModalityUIDInput;
+    StudyDate= StudyDateInput;
 }
 
 QueryData::QueryData()
@@ -17,5 +18,6 @@ QueryData::QueryData()
     this->PatientName="";
     this->StudyInstanceUID="";
     this->Modality="";
+    this->StudyDate="";
 
 }

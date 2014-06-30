@@ -4,7 +4,7 @@
 #include <QDebug>
 #include "dcmserver.h"
 #include <modelpatientinfo.h>
-
+#include <dcmtk/dcmdata/dcuid.h>
 
 queryTable::queryTable(QWidget *parent) :
     QWidget(parent),
@@ -94,12 +94,13 @@ bool queryTable::queryServer()
     else {
         return false;
     }
+    return true;
 
 }
 
 void queryTable::onClicked(QModelIndex index)
 {
-    qDebug() << model->list.at(index.row()).PatientName;
+    qDebug() << dcmFindUIDFromName(model->list.at(index.row()).Modality.toLatin1());
 
 }
 
@@ -131,24 +132,25 @@ void queryTable::ClickedFilterQuery()
         proxyModel->setFilterKeyColumn(2);
         setFilter = true;
     }
-    if (!setFilter)
-        if (!model->list.empty())
+    if (!setFilter) {
+        if (!model->list.empty()){
             proxyModel->setFilterRegExp("");
-        else{
-
-        if(queryServer()){
-            //               proxyModel = new QSortFilterProxyModel(this);
-            //               proxyModel->setSourceModel(model);
-            proxyModel = new QSortFilterProxyModel(this);
-            proxyModel->setSourceModel(model);
-            ui->tableView->setModel(proxyModel);
-
-
         }
-        else
-            QMessageBox::critical(0,"Error", "Нет возможности установить соединение с PACS сервер");
+        else {
 
-        //
+            if(queryServer()){
+
+                proxyModel = new QSortFilterProxyModel(this);
+                proxyModel->setSourceModel(model);
+                ui->tableView->setModel(proxyModel);
+
+
+            }
+            else
+                QMessageBox::critical(0,"Error", "Нет возможности установить соединение с PACS сервер");
+
+            //
+        }
     }
 
 }

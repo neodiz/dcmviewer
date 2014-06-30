@@ -4,6 +4,7 @@
 #include <QAbstractTableModel>
 #include <querydata.h>
 
+
 class ModelPatientInfo : public QAbstractTableModel
 {
     Q_OBJECT
