@@ -3,7 +3,7 @@
 ModelPatientInfo::ModelPatientInfo(QObject *parent) :
     QAbstractTableModel(parent)
 {
-    header_data << QString::fromUtf8("ФИО пациента") << QString::fromUtf8("Номер пациента") << QString::fromUtf8("Номер Услуги");
+    header_data << QString::fromUtf8("ФИО пациента") << QString::fromUtf8("Номер пациента") << QString::fromUtf8("Номер Услуги") << QString::fromUtf8("StudyID") << QString::fromUtf8("Модальность");
 }
 
 QVariant ModelPatientInfo::data(const QModelIndex &index, int role) const
@@ -19,6 +19,10 @@ QVariant ModelPatientInfo::data(const QModelIndex &index, int role) const
             return list.at(index.row()).PatientID;
         if (index.column() == 2)
             return list.at(index.row()).AccessionNumber;
+        if (index.column() == 3)
+            return list.at(index.row()).StudyInstanceUID;
+        if (index.column() == 4)
+            return list.at(index.row()).Modality;
 
     }
     return QVariant();
@@ -31,7 +35,7 @@ int ModelPatientInfo::rowCount(const QModelIndex &parent) const
 
 int ModelPatientInfo::columnCount(const QModelIndex &parent) const
 {
-    return 3;
+    return 5;
 }
 
 QVariant ModelPatientInfo::headerData(int section, Qt::Orientation orientation, int role) const

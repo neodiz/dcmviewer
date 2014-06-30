@@ -9,7 +9,8 @@
 
 ServerInfoXML::ServerInfoXML()
 {
-    file = new QFile("ServerInfo.xml");
+    QString path = qgetenv("HOME") + "/.config/DcmViewer/" + "ServerInfo.xml";
+    file = new QFile(path);
 }
 
 

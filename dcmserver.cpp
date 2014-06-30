@@ -58,6 +58,10 @@ bool DcmServer::queryDcm(QList<QueryData> *Patients)
     req.insertEmptyElement(DCM_PatientName);
     req.insertEmptyElement(DCM_PatientID);
     req.insertEmptyElement(DCM_AccessionNumber);
+
+    req.insertEmptyElement(DCM_StudyInstanceUID);
+    req.insertEmptyElement(DCM_Modality);
+
     req.putAndInsertOFStringArray(DCM_QueryRetrieveLevel, "STUDY");
     req.putAndInsertOFStringArray(DCM_StudyInstanceUID, "");
     T_ASC_PresentationContextID presID = findUncompressedPC(UID_FINDStudyRootQueryRetrieveInformationModel, Sender);
@@ -73,16 +77,17 @@ bool DcmServer::queryDcm(QList<QueryData> *Patients)
        return false;
 
 
-    OFString NamePatient;
-    OFString PatientID;
-    OFString AccessionNumber;
+    OFString NamePatient,PatientID,AccessionNumber,StudyInstanceUID,Modality;
     for (unsigned int i=0;i<findResponses.size();i++){
         if (findResponses.at(i)->m_dataset != NULL){
 
             result= findResponses.at(i)->m_dataset->findAndGetOFString(DCM_PatientName,NamePatient);
             result= findResponses.at(i)->m_dataset->findAndGetOFString(DCM_AccessionNumber,AccessionNumber);
             result= findResponses.at(i)->m_dataset->findAndGetOFString(DCM_PatientID,PatientID);
-            Patients->append(QueryData(NamePatient.data(),PatientID.data(),AccessionNumber.data()));
+            result= findResponses.at(i)->m_dataset->findAndGetOFString(DCM_StudyInstanceUID,StudyInstanceUID);
+            result = findResponses.at(i)->m_dataset->findAndGetOFString(DCM_Modality,Modality);
+
+            Patients->append(QueryData(NamePatient.data(),PatientID.data(),AccessionNumber.data(),StudyInstanceUID.data(),Modality.data()));
         }
     }
     return true;

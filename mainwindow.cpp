@@ -7,6 +7,7 @@
 #include <showdicomform.h>
 #include <querytable.h>
 #include "serveredit.h"
+#include <QDir>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -27,6 +28,13 @@ MainWindow::MainWindow(QWidget *parent) :
 //    ui->WriteDataDicomButton->setVisible(false);
 //    ui->ShowPushButton->setVisible(false);
 //    LaetEdit = false;
+    QString path = qgetenv("HOME") + "/.config/DcmViewer";
+    QDir dir(path);
+    if (!dir.exists()){
+      dir.mkdir(path);
+    }
+
+
     QList<ServerInfoClass >  ServerData ;
     ServerInfoDataModel = new ModelServerInfo;
     ServerInfoXML *readServerInfo = new ServerInfoXML();
