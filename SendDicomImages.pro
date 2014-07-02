@@ -48,13 +48,22 @@ FORMS    += mainwindow.ui \
     editaddformserver.ui
 
 
-unix:!macx: LIBS = -ldcmnet -ldcmdata -lofstd -loflog -ldcmimgle -ldcmjpeg -lijg12 -lijg16 -lijg8
+unix:!macx: LIBS = -ldcmnet -ldcmdata -lofstd -loflog -ldcmimgle -ldcmjpeg -lijg12 -lijg16 -lijg8 \
+                -lvtkRenderingOpenGL \
+                -lvtkGUISupportQt \
+                -lvtkCommonCore \
+                -lvtkInteractionStyle \
+                -lvtkRenderingCore \
+                -lvtkRenderingFreeType \
+                -lvtkRenderingFreeTypeOpenGL
+
+
 #-lIL -lILU -lILUT
 win32:LIBS += -ldcmnet -ldcmdata -lofstd -loflog -ldcmimgle -ldcmjpeg -lijg12 -lijg16 -lijg8
 
 RESOURCES += \
     ResourceMainWindowIcons.qrc \
     ServerInfoXml.qrc
-
-
+INCLUDEPATH += /usr/include/vtk-6.0
+LIBS += -L/usr/lib64/vtk/
 

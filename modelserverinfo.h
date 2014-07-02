@@ -3,6 +3,7 @@
 
 #include <QAbstractTableModel>
 #include "serverinfoclass.h"
+#include <QStringList>
 
 class ModelServerInfo : public QAbstractTableModel
 {

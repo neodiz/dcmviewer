@@ -9,6 +9,11 @@
 #include <qdicomimage.h>
 #include <QPainter>
 #include "modelserverinfo.h"
+
+#define vtkRenderingCore_AUTOINIT 4(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingFreeTypeOpenGL,vtkRenderingOpenGL)
+#define vtkRenderingVolume_AUTOINIT 1(vtkRenderingVolumeOpenGL)
+
+
 namespace Ui {
 class MainWindow;
 }
