@@ -55,7 +55,8 @@ unix:!macx: LIBS = -ldcmnet -ldcmdata -lofstd -loflog -ldcmimgle -ldcmjpeg -lijg
                 -lvtkInteractionStyle \
                 -lvtkRenderingCore \
                 -lvtkRenderingFreeType \
-                -lvtkRenderingFreeTypeOpenGL
+                -lvtkRenderingFreeTypeOpenGL \
+                -lvtkIOImage
 
 
 #-lIL -lILU -lILUT

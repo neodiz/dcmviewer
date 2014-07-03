@@ -44,6 +44,29 @@ MainWindow::MainWindow(QWidget *parent) :
     for (int i =0;i<ServerData.size();i++)
         ServerInfoDataModel->list= (ServerData);
 
+
+    vtkSmartPointer<vtkSphereSource> sphereSource =
+        vtkSmartPointer<vtkSphereSource>::New();
+    sphereSource->Update();
+    vtkSmartPointer<vtkPolyDataMapper> sphereMapper =
+        vtkSmartPointer<vtkPolyDataMapper>::New();
+    sphereMapper->SetInputConnection(sphereSource->GetOutputPort());
+    vtkSmartPointer<vtkActor> sphereActor =
+        vtkSmartPointer<vtkActor>::New();
+    sphereActor->SetMapper(sphereMapper);
+
+    // VTK Renderer
+    vtkSmartPointer<vtkRenderer> render =
+        vtkSmartPointer<vtkRenderer>::New();
+
+
+
+
+    ui->qvtkWidgetShowImage->GetRenderWindow()->AddRenderer(render);
+
+//
+
+
 }
 
 MainWindow::~MainWindow()

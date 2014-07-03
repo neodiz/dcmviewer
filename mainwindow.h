@@ -6,9 +6,19 @@
 #include <QApplication>
 #include "dcmfile.h"
 #include <QImage>
-#include <qdicomimage.h>
 #include <QPainter>
 #include "modelserverinfo.h"
+
+#include <vtkDICOMImageReader.h>
+#include <vtkRenderWindow.h>
+#include <vtkRenderWindowInteractor.h>
+#include <vtkRenderer.h>
+#include <vtkImageViewer2.h>
+#include <vtkSmartPointer.h>
+
+
+#include <vtkPolyDataMapper.h>
+#include <vtkSphereSource.h>
 
 #define vtkRenderingCore_AUTOINIT 4(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingFreeTypeOpenGL,vtkRenderingOpenGL)
 #define vtkRenderingVolume_AUTOINIT 1(vtkRenderingVolumeOpenGL)
