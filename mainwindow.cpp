@@ -8,7 +8,7 @@
 #include <querytable.h>
 #include "serveredit.h"
 #include <QDir>
-
+#include "vtkImageData.h"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -45,35 +45,17 @@ MainWindow::MainWindow(QWidget *parent) :
         ServerInfoDataModel->list= (ServerData);
     // читаем файлы из каталога
 
-    vtkSmartPointer<vtkDICOMImageReader> reader =
-            vtkSmartPointer<vtkDICOMImageReader>::New();
-    reader->SetFileName(QString("/tmp/dcmstorage/MR.1.3.12.2.1107.5.2.13.20561.30000005042216091690600002705").toLocal8Bit());
-    reader->Update();
-    // рисуем
-    vtkSmartPointer<vtkImageViewer2> imageViewer =
-            vtkSmartPointer<vtkImageViewer2>::New();
-    imageViewer->SetInputConnection(reader->GetOutputPort());
 
-
-    vtkSmartPointer<vtkActor> sphereActor =
-          vtkSmartPointer<vtkActor>::New();
-    sphereActor->SetMapper(imageViewer);
-
-    vtkSmartPointer<vtkRenderWindowInteractor> renderWindowInteractor =
-        vtkSmartPointer<vtkRenderWindowInteractor>::New();
-    imageViewer->SetupInteractor(renderWindowInteractor);
-
+    DicomReader= vtkSmartPointer<vtkDICOMImageReader>::New();
+    render = vtkSmartPointer<vtkRenderer>::New();
+    imageViewer = vtkSmartPointer<vtkImageViewer2>::New();
+    DicomMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
+    iteractor = vtkSmartPointer<vtkRenderWindowInteractor>::New();
+    DicomActor = vtkSmartPointer<vtkActor>::New();
     // VTK Renderer
-    vtkSmartPointer<vtkRenderer> render =
-            vtkSmartPointer<vtkRenderer>::New();
-    render->AddActor(sphereActor);
 
-
-
-
-    ui->qvtkWidgetShowImage->GetRenderWindow()->AddRenderer(render);
-
-    //
+    ui->qvtkWidgetShowImage->GetRenderWindow()->AddRenderer(imageViewer->GetRenderer());
+    readfiles();
 
 
 }
@@ -81,6 +63,15 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::readfiles()
+{
+    DicomReader->SetFileName(QString("/data/dcm/dicom_images/prostate.IMG").toStdString().c_str());
+    DicomReader->Update();
+    imageViewer->SetInputConnection(DicomReader->GetOutputPort());
+    ui->qvtkWidgetShowImage->update();
+
 }
 
 void MainWindow::SenButton_clicked()

@@ -19,7 +19,7 @@
 
 #include <vtkPolyDataMapper.h>
 #include <vtkSphereSource.h>
-
+#include <vtkDataSetMapper.h>
 #define vtkRenderingCore_AUTOINIT 4(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingFreeTypeOpenGL,vtkRenderingOpenGL)
 #define vtkRenderingVolume_AUTOINIT 1(vtkRenderingVolumeOpenGL)
 
@@ -40,6 +40,13 @@ private:
     Ui::MainWindow *ui;
     bool LaetEdit;
     ModelServerInfo *ServerInfoDataModel;
+    vtkSmartPointer<vtkDICOMImageReader> DicomReader;
+    vtkSmartPointer<vtkRenderer> render;
+    vtkSmartPointer<vtkImageViewer2> imageViewer;
+    vtkSmartPointer<vtkPolyDataMapper> DicomMapper;
+    vtkSmartPointer<vtkRenderWindowInteractor> iteractor;
+    vtkSmartPointer<vtkActor> DicomActor;
+    void readfiles();
 
 private slots:
     void SenButton_clicked();
