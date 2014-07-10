@@ -6,12 +6,12 @@ class QueryData
 public:
     QueryData(QString PatientNameInput,QString PatientIDInput,QString AccessionNumberInput,QString ModalityUIDInput,QString StudyDateInput,QString StudyInstanceUIDInput);
     QueryData();
-    QString PatientName;
-    QString PatientID;
-    QString AccessionNumber;
-    QString StudyInstanceUID;
-    QString Modality;
-    QString StudyDate;
+    QString PatientName_;
+    QString PatientID_;
+    QString AccessionNumber_;
+    QString StudyInstanceUID_;
+    QString Modality_;
+    QString StudyDate_;
 
 };
 

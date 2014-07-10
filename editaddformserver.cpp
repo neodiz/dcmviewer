@@ -24,26 +24,26 @@ void EditAddFormServer::editLabelStartInfo(QString text)
 
 void EditAddFormServer::setQLinesForEditUser()
 {
-    ui->lineEditAlias->setText(model->list.at(index.row()).Alias);
-    ui->lineEditAddress->setText(model->list.at(index.row()).Address);
-    ui->lineEditAet->setText(model->list.at(index.row()).Aet);
-    ui->lineEditPort->setText(QString::number(model->list.at(index.row()).port));
+    ui->lineEditAlias->setText(model_->list.at(index_.row()).Alias);
+    ui->lineEditAddress->setText(model_->list.at(index_.row()).Address);
+    ui->lineEditAet->setText(model_->list.at(index_.row()).Aet);
+    ui->lineEditPort->setText(QString::number(model_->list.at(index_.row()).port));
 }
 
 void EditAddFormServer::setModelServerInfo(ModelServerInfo *FromInsideModel)
 {
-    model = FromInsideModel;
+    model_ = FromInsideModel;
 }
 
 void EditAddFormServer::setIndexModel(QModelIndex IndexModel)
 {
-    index = IndexModel;
+    index_ = IndexModel;
     setQLinesForEditUser();
 }
 
 void EditAddFormServer::addServer()
 {
-    model->insertRow(model->list.size()+1,QModelIndex(),server);
+    model_->insertRow(model_->list.size()+1,QModelIndex(),server_);
 
 }
 
@@ -51,10 +51,10 @@ void EditAddFormServer::editServer()
 {
     int button = QMessageBox::question(this,
                                        QString::fromLocal8Bit("Подтверждение изменение записи"),
-                                       QString::fromLocal8Bit("Вы уверены что хотите изменить запись \"%1\" ?").arg(model->list.at(index.row()).Alias),
+                                       QString::fromLocal8Bit("Вы уверены что хотите изменить запись \"%1\" ?").arg(model_->list.at(index_.row()).Alias),
                                        QMessageBox::Yes | QMessageBox::No);
     if (button == QMessageBox::Yes) {
-        model->editRow(index.row(),QModelIndex(),server);
+        model_->editRow(index_.row(),QModelIndex(),server_);
     }
 
 
@@ -64,10 +64,10 @@ void EditAddFormServer::pushButtonOk()
 {
 
 
-    server.Address= ui->lineEditAddress->text();
-    server.Aet=ui->lineEditAet->text();
-    server.Alias=ui->lineEditAlias->text();
-    server.port=ui->lineEditPort->text().toInt();
+    server_.Address= ui->lineEditAddress->text();
+    server_.Aet=ui->lineEditAet->text();
+    server_.Alias=ui->lineEditAlias->text();
+    server_.port=ui->lineEditPort->text().toInt();
     if (addEdit == 0)
         addServer();
     else if (addEdit == 1)

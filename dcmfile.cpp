@@ -13,13 +13,13 @@ DcmFile::~DcmFile()
 
 int DcmFile::returnCountFiles()
 {
-    return list.size();
+    return list_.size();
 }
 
 void DcmFile::ReadInfoDcmFilePatient(QString &Patient)
 {
     OFString PatientOF;
-    if (DcmFilename.getDataset()->findAndGetOFString(DCM_PatientName,PatientOF).good())
+    if (DcmFilename_.getDataset()->findAndGetOFString(DCM_PatientName,PatientOF).good())
     {
         Patient = PatientOF.data();
     } else
@@ -30,7 +30,7 @@ void DcmFile::ReadInfoDcmFilePatient(QString &Patient)
 void DcmFile::ReadInfoDcmFilePatientID(QString &PatientID)
 {
     OFString PatientIDOF;
-    if (DcmFilename.getDataset()->findAndGetOFString(DCM_PatientID, PatientIDOF).good())
+    if (DcmFilename_.getDataset()->findAndGetOFString(DCM_PatientID, PatientIDOF).good())
     {
         PatientID = PatientIDOF.data();
     } else
@@ -41,7 +41,7 @@ void DcmFile::ReadInfoDcmFilePatientID(QString &PatientID)
 void DcmFile::ReadInfoDcmFilePatientAccess(QString &AccessionNumber)
 {
     OFString AccessionNumberOF;
-    if (DcmFilename.getDataset()->findAndGetOFString(DCM_AccessionNumber,AccessionNumberOF).good())
+    if (DcmFilename_.getDataset()->findAndGetOFString(DCM_AccessionNumber,AccessionNumberOF).good())
     {
         AccessionNumber = AccessionNumberOF.data();
     } else
@@ -52,9 +52,9 @@ void DcmFile::ReadInfoDcmFilePatientAccess(QString &AccessionNumber)
 void DcmFile::CreateQimageDcmFile()
 {
     DJDecoderRegistration::registerCodecs();
-    xfer = DcmFilename.getDataset()->getOriginalXfer();
-    m_dicomImage = new DicomImage(&DcmFilename,xfer,CIF_AcrNemaCompatibility,0,0);
-    s= new QSize(m_dicomImage->getWidth(),m_dicomImage->getHeight());
+    xfer_ = DcmFilename_.getDataset()->getOriginalXfer();
+    m_dicomImage_ = new DicomImage(&DcmFilename_,xfer_,CIF_AcrNemaCompatibility,0,0);
+    s= new QSize(m_dicomImage_->getWidth(),m_dicomImage_->getHeight());
 
 }
 
@@ -63,16 +63,16 @@ QImage DcmFile::ReadDicomData()
 
 
     QImage m_qimage;
-    if(m_dicomImage->isMonochrome()){
-        m_qimage = QImage(m_dicomImage->getWidth(),m_dicomImage->getHeight(), QImage::Format_Indexed8);
+    if(m_dicomImage_->isMonochrome()){
+        m_qimage = QImage(m_dicomImage_->getWidth(),m_dicomImage_->getHeight(), QImage::Format_Indexed8);
 
     }
-    m_dicomImage->setMinMaxWindow();
-    uchar *pixelData = (uchar *)(m_dicomImage->getOutputData(8 /* bits */));
-    for(unsigned y=0; y < m_dicomImage->getHeight(); y++)
+    m_dicomImage_->setMinMaxWindow();
+    uchar *pixelData = (uchar *)(m_dicomImage_->getOutputData(8 /* bits */));
+    for(unsigned y=0; y < m_dicomImage_->getHeight(); y++)
     {
         uchar* scanLine = m_qimage.scanLine(y);
-        for(unsigned x = m_dicomImage->getWidth(); x != 0; --x)
+        for(unsigned x = m_dicomImage_->getWidth(); x != 0; --x)
         {
             *(scanLine++) = *(pixelData++);
         }
@@ -90,8 +90,8 @@ QSize DcmFile::sizeDCMFile()
 
 void DcmFile::OpenDcmFile(int i)
 {
-    result = DcmFilename.loadFile(list.at(i).absoluteFilePath().toLatin1().data());
-    if (result.bad())
+    result_ = DcmFilename_.loadFile(list_.at(i).absoluteFilePath().toLatin1().data());
+    if (result_.bad())
             return;
 
 }
@@ -100,8 +100,8 @@ void DcmFile::OpenDcmFile(int i)
 QList<QString> DcmFile::returnFiles()
 {
     QList<QString> files;
-    for (int i=0;i<list.size();i++){
-        files.append(list.at(i).absoluteFilePath().toLatin1().data());
+    for (int i=0;i<list_.size();i++){
+        files.append(list_.at(i).absoluteFilePath().toLatin1().data());
     }
     return files;
 }
@@ -111,44 +111,44 @@ void DcmFile::setURLpath(QString UrlPathDicom)
 {
     QDir Directory(UrlPathDicom);
     Directory.setFilter(QDir::Files | QDir::NoDotAndDotDot |QDir::NoSymLinks);
-    list = Directory.entryInfoList();
+    list_ = Directory.entryInfoList();
 }
 
 
 QString DcmFile::returnTransferSyntax()
 {
-     DcmXfer filexfer(DcmFilename.getDataset()->getOriginalXfer());
+     DcmXfer filexfer(DcmFilename_.getDataset()->getOriginalXfer());
     return filexfer.getXferID();
 }
 
 QString DcmFile::returnSopClass()
 {
     OFString SopClass;
-    DcmFilename.getDataset()->findAndGetOFString(DCM_SOPClassUID,SopClass);
+    DcmFilename_.getDataset()->findAndGetOFString(DCM_SOPClassUID,SopClass);
     return SopClass.data();
 }
 
 
 bool DcmFile::WriteDataToFile(QString UrlPathDicom,OFString Patient,OFString NumPatient,OFString AccesPatient)
 {
-    result = DcmFilename.loadFile(UrlPathDicom.toLatin1().data());
-    if (result.bad())
+    result_ = DcmFilename_.loadFile(UrlPathDicom.toLatin1().data());
+    if (result_.bad())
         return false;
-    result = DcmFilename.loadAllDataIntoMemory();
-    if (result.bad()) {
+    result_ = DcmFilename_.loadAllDataIntoMemory();
+    if (result_.bad()) {
         return false;
     }
-    result= DcmFilename.getDataset()->putAndInsertString(DCM_PatientID,NumPatient.data());
-    if (result.bad())
+    result_= DcmFilename_.getDataset()->putAndInsertString(DCM_PatientID,NumPatient.data());
+    if (result_.bad())
         return false;
-    result= DcmFilename.getDataset()->putAndInsertString(DCM_AccessionNumber,AccesPatient.data());
-    if (result.bad())
+    result_= DcmFilename_.getDataset()->putAndInsertString(DCM_AccessionNumber,AccesPatient.data());
+    if (result_.bad())
         return false;
-    result= DcmFilename.getDataset()->putAndInsertString(DCM_PatientName,Patient.data());
-    if (result.bad())
+    result_= DcmFilename_.getDataset()->putAndInsertString(DCM_PatientName,Patient.data());
+    if (result_.bad())
         return false;
-    result = DcmFilename.saveFile(UrlPathDicom.toLatin1().data());
-    if (result.bad())
+    result_ = DcmFilename_.saveFile(UrlPathDicom.toLatin1().data());
+    if (result_.bad())
         return false;
     return true;
 }

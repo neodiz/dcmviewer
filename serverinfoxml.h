@@ -11,8 +11,8 @@ public:
     void writeFileXML(ModelServerInfo *FromInsideModel);
     QList <ServerInfoClass > returnServerInfo();
 private:
-    QFile* file;
-    QList <ServerInfoClass > ServerInfoList;
+    QFile* file_;
+    QList <ServerInfoClass > ServerInfoList_;
 
     void setData(QList<QString> Alias,QList<QString> Address,QList<QString> Aet,QList<int> Port);
 

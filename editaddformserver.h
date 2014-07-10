@@ -21,11 +21,11 @@ public:
     int addEdit;
 private:
     Ui::EditAddFormServer *ui;
-    ModelServerInfo *model;
-    QModelIndex index;
+    ModelServerInfo *model_;
+    QModelIndex index_;
     void addServer();
     void editServer();
-    ServerInfoClass server;
+    ServerInfoClass server_;
 
 
 private slots:

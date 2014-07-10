@@ -11,7 +11,7 @@ queryTable::queryTable(QWidget *parent) :
     ui(new Ui::queryTable)
 {
     ui->setupUi(this);
-    model = new ModelPatientInfo;
+    model_ = new ModelPatientInfo;
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -27,8 +27,8 @@ queryTable::queryTable(QWidget *parent) :
 
 bool queryTable::SetPatientName(QList<QString> Patient)
 {
-    QueryPatientName= Patient;
-    if (QueryPatientName.isEmpty())
+    QueryPatientName_= Patient;
+    if (QueryPatientName_.isEmpty())
         return false ;
     return true;
 
@@ -36,16 +36,16 @@ bool queryTable::SetPatientName(QList<QString> Patient)
 
 bool queryTable::setPatientID(QList<QString> PatientID)
 {
-    QueryPatientID = PatientID;
-    if (QueryPatientID.isEmpty())
+    QueryPatientID_ = PatientID;
+    if (QueryPatientID_.isEmpty())
         return false;
     return true;
 }
 
 bool queryTable::setAccessionNumber(QList<QString> AccessionNumber)
 {
-    QueryAccessionNumber= AccessionNumber;
-    if (QueryAccessionNumber.isEmpty())
+    QueryAccessionNumber_= AccessionNumber;
+    if (QueryAccessionNumber_.isEmpty())
         return false;
     return true;
 }
@@ -57,7 +57,7 @@ void queryTable::writeDataTableSpace()
 
 void queryTable::setModelServerInfo(ModelServerInfo *model)
 {
-    ServerInfoModel = model;
+    ServerInfoModel_ = model;
     setComboBoxItems();
 
 
@@ -70,15 +70,15 @@ queryTable::~queryTable()
 
 void queryTable::setComboBoxItems()
 {
-    for (unsigned int i=0;i<ServerInfoModel->list.size();i++)
-        ui->ComboBoxServerInfo->addItem(ServerInfoModel->list.at(i).Alias);
+    for (unsigned int i=0;i<ServerInfoModel_->list.size();i++)
+        ui->ComboBoxServerInfo->addItem(ServerInfoModel_->list.at(i).Alias);
 }
 
 bool queryTable::queryServer()
 {
-    DcmServer *QueryDcm = new DcmServer(ServerInfoModel->list.at(ui->ComboBoxServerInfo->currentIndex()).Address,
-                                        ServerInfoModel->list.at(ui->ComboBoxServerInfo->currentIndex()).port,
-                                        ServerInfoModel->list.at(ui->ComboBoxServerInfo->currentIndex()).Aet,
+    DcmServer *QueryDcm = new DcmServer(ServerInfoModel_->list.at(ui->ComboBoxServerInfo->currentIndex()).Address,
+                                        ServerInfoModel_->list.at(ui->ComboBoxServerInfo->currentIndex()).port,
+                                        ServerInfoModel_->list.at(ui->ComboBoxServerInfo->currentIndex()).Aet,
                                         QString("Sender"));
     QueryDcm->setTransferSyntaxPresentationContext(QString("query"));
     QList<QueryData> *Patients = new QList<QueryData>;
@@ -86,7 +86,7 @@ bool queryTable::queryServer()
         if (QueryDcm->createAssociation())
             if(QueryDcm->queryDcm(Patients)){
                 for (int i=0;i<Patients->size();i++)
-                    model->list.append(Patients->at(i));
+                    model_->list.append(Patients->at(i));
                 return true;
 
             }
@@ -100,7 +100,7 @@ bool queryTable::queryServer()
 
 void queryTable::onClicked(QModelIndex index)
 {
-    qDebug() << dcmFindUIDFromName(model->list.at(index.row()).Modality.toLatin1());
+    qDebug() << dcmFindUIDFromName(model_->list.at(index.row()).Modality_.toLatin1());
 
 }
 
@@ -111,8 +111,8 @@ void queryTable::ClickedFilterQuery()
         QString UrlSearch("^");
         UrlSearch.append(ui->searchLinePatientName->text());
         QRegExp Regex(UrlSearch);
-        proxyModel->setFilterRegExp(Regex);
-        proxyModel->setFilterKeyColumn(0);
+        proxyModel_->setFilterRegExp(Regex);
+        proxyModel_->setFilterKeyColumn(0);
         setFilter = true;
     }
     if (!ui->searchLinePatientID->text().isEmpty()){
@@ -120,29 +120,29 @@ void queryTable::ClickedFilterQuery()
         UrlSearch.append(ui->searchLinePatientID->text());
         qDebug() << UrlSearch;
         QRegExp Regex(UrlSearch);
-        proxyModel->setFilterRegExp(Regex);
-        proxyModel->setFilterKeyColumn(1);
+        proxyModel_->setFilterRegExp(Regex);
+        proxyModel_->setFilterKeyColumn(1);
         setFilter = true;
     }
     if (!ui->searchLineAccessionNumber->text().isEmpty()){
         QString UrlSearch("^");
         UrlSearch.append(ui->searchLineAccessionNumber->text());
         QRegExp Regex(UrlSearch);
-        proxyModel->setFilterRegExp(Regex);
-        proxyModel->setFilterKeyColumn(2);
+        proxyModel_->setFilterRegExp(Regex);
+        proxyModel_->setFilterKeyColumn(2);
         setFilter = true;
     }
     if (!setFilter) {
-        if (!model->list.empty()){
-            proxyModel->setFilterRegExp("");
+        if (!model_->list.empty()){
+            proxyModel_->setFilterRegExp("");
         }
         else {
 
             if(queryServer()){
 
-                proxyModel = new QSortFilterProxyModel(this);
-                proxyModel->setSourceModel(model);
-                ui->tableView->setModel(proxyModel);
+                proxyModel_ = new QSortFilterProxyModel(this);
+                proxyModel_->setSourceModel(model_);
+                ui->tableView->setModel(proxyModel_);
 
 
             }

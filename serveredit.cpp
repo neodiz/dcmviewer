@@ -30,15 +30,15 @@ ServerEdit::~ServerEdit()
 
 void ServerEdit::setModelServerInfo(ModelServerInfo *model)
 {
-    ServerInfoDataModel=model;
-    ui->listView->setModel(ServerInfoDataModel);
+    ServerInfoDataModel_=model;
+    ui->listView->setModel(ServerInfoDataModel_);
 }
 
 void ServerEdit::checkEchoServer()
 {
-    DcmServer *ServerCheck = new DcmServer(ServerInfoDataModel->list.at(indexModel.row()).Address,
-                                           ServerInfoDataModel->list.at(indexModel.row()).port,
-                                           ServerInfoDataModel->list.at(indexModel.row()).Aet,
+    DcmServer *ServerCheck = new DcmServer(ServerInfoDataModel_->list.at(indexModel_.row()).Address,
+                                           ServerInfoDataModel_->list.at(indexModel_.row()).port,
+                                           ServerInfoDataModel_->list.at(indexModel_.row()).Aet,
                                            QString("Sender"));
     ServerCheck->setTransferSyntaxPresentationContext(QString("echo"));
     if (ServerCheck->initNetwork()){
@@ -54,7 +54,7 @@ void ServerEdit::checkEchoServer()
 void ServerEdit::SaveXMLServerInfo()
 {
     ServerInfoXML *writeServerInfo = new ServerInfoXML();
-    writeServerInfo->writeFileXML(ServerInfoDataModel);
+    writeServerInfo->writeFileXML(ServerInfoDataModel_);
     this->close();
 
 }
@@ -62,7 +62,7 @@ void ServerEdit::SaveXMLServerInfo()
 void ServerEdit::SlotClicketServer(QModelIndex index)
 {
 
-    indexModel = index;
+    indexModel_ = index;
 
 }
 
@@ -70,10 +70,10 @@ void ServerEdit::remoteServerInfo()
 {
     int button = QMessageBox::question(this,
                                        QString::fromLocal8Bit("Подтверждение удаления"),
-                                       QString::fromLocal8Bit("Вы уверены что хотите удалить  \"%1\"?").arg(ServerInfoDataModel->list.at(indexModel.row()).Alias),
+                                       QString::fromLocal8Bit("Вы уверены что хотите удалить  \"%1\"?").arg(ServerInfoDataModel_->list.at(indexModel_.row()).Alias),
                                        QMessageBox::Yes | QMessageBox::No);
     if (button == QMessageBox::Yes) {
-        ServerInfoDataModel->removeRow(indexModel.row(),indexModel);
+        ServerInfoDataModel_->removeRow(indexModel_.row(),indexModel_);
     }
 
 }
@@ -82,7 +82,7 @@ void ServerEdit::addServerInfo()
 {
     EditAddFormServer *addServer = new EditAddFormServer();
     addServer->editLabelStartInfo("Введите параметры нового сервера PACS");
-    addServer->setModelServerInfo(ServerInfoDataModel);
+    addServer->setModelServerInfo(ServerInfoDataModel_);
     addServer->addEdit = 0;
     addServer->show();
 
@@ -95,8 +95,8 @@ void ServerEdit::editServerInfo()
     EditAddFormServer *editServer = new EditAddFormServer();
     editServer->editLabelStartInfo("Измените параметры сервера PACS");
     editServer->addEdit = 1;
-    editServer->setModelServerInfo(ServerInfoDataModel);
-    editServer->setIndexModel(indexModel);
+    editServer->setModelServerInfo(ServerInfoDataModel_);
+    editServer->setIndexModel(indexModel_);
     editServer->show();
 
 
@@ -108,7 +108,7 @@ void ServerEdit::checkServerConnection()
     QProcess pingExec;
     pingParams.append("-c");
     pingParams.append("1");
-    pingParams.append(ServerInfoDataModel->list.at(indexModel.row()).Address);
+    pingParams.append(ServerInfoDataModel_->list.at(indexModel_.row()).Address);
     int exitCode = pingExec.execute("ping",pingParams);
     pingExec.waitForFinished(-1);
 

@@ -10,13 +10,13 @@
 ServerInfoXML::ServerInfoXML()
 {
     QString path = qgetenv("HOME") + "/.config/DcmViewer/" + "ServerInfo.xml";
-    file = new QFile(path);
+    file_ = new QFile(path);
 }
 
 
 bool ServerInfoXML::readFileXML()
 {
-    if (!file->open(QIODevice::ReadOnly | QIODevice::Text))
+    if (!file_->open(QIODevice::ReadOnly | QIODevice::Text))
     {
         //         QMessageBox::critical(this, "QXSRExample::ReadXMLFile", "Couldn't open xml file", QMessageBox::Ok);
         return false;
@@ -25,7 +25,7 @@ bool ServerInfoXML::readFileXML()
     QList<int> Port;
 
     /* QXmlStreamReader takes any QIODevice. */
-    QXmlStreamReader xml(file);
+    QXmlStreamReader xml(file_);
     /* We'll parse the XML until we reach end of it.*/
     while(!xml.atEnd() && !xml.hasError())
     {
@@ -68,12 +68,12 @@ bool ServerInfoXML::readFileXML()
 
 void ServerInfoXML::writeFileXML(ModelServerInfo *FromInsideModel)
 {
-    if (!file->open(QIODevice::WriteOnly | QIODevice::Text))
+    if (!file_->open(QIODevice::WriteOnly | QIODevice::Text))
     {
         //        QMessageBox::critical(this, "QXSRExample::WriteXMLFile", "Couldn't open anna.xml", QMessageBox::Ok);
         return;
     }
-    QXmlStreamWriter xmlWriter(file);
+    QXmlStreamWriter xmlWriter(file_);
     xmlWriter.setAutoFormatting(true);
     xmlWriter.writeStartDocument();
     xmlWriter.writeStartElement("Server");
@@ -89,7 +89,7 @@ void ServerInfoXML::writeFileXML(ModelServerInfo *FromInsideModel)
 
     xmlWriter.writeEndElement();
     xmlWriter.writeEndDocument();
-    file->close();
+    file_->close();
     //    if (file.error())
     //        QMessageBox::critical(this, "QXSRExample::parseXML", file.errorString(), QMessageBox::Ok);
 
@@ -98,7 +98,7 @@ void ServerInfoXML::writeFileXML(ModelServerInfo *FromInsideModel)
 
 QList<ServerInfoClass > ServerInfoXML::returnServerInfo()
 {
-    return ServerInfoList;
+    return ServerInfoList_;
 
 }
 
@@ -111,7 +111,7 @@ void ServerInfoXML::setData(QList<QString> Alias, QList<QString> Address, QList<
         InfoServer.Address = Address.at(i);
         InfoServer.Aet = Aet.at(i);
         InfoServer.port = Port.at(i);
-        ServerInfoList.append(InfoServer);
+        ServerInfoList_.append(InfoServer);
     }
 }
 

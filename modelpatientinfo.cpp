@@ -14,15 +14,15 @@ QVariant ModelPatientInfo::data(const QModelIndex &index, int role) const
         return QVariant();
     if (role == Qt::DisplayRole || role == Qt::EditRole){
         if (index.column() == 0)
-            return list.at(index.row()).PatientName;
+            return list.at(index.row()).PatientName_;
         if (index.column() == 1)
-            return list.at(index.row()).PatientID;
+            return list.at(index.row()).PatientID_;
         if (index.column() == 2)
-            return list.at(index.row()).AccessionNumber;
+            return list.at(index.row()).AccessionNumber_;
         if (index.column() == 3)
-            return list.at(index.row()).Modality;
+            return list.at(index.row()).Modality_;
         if (index.column() == 4)
-            return list.at(index.row()).StudyDate;
+            return list.at(index.row()).StudyDate_;
 
     }
     return QVariant();

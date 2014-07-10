@@ -26,12 +26,12 @@ public:
 
 private:
     Ui::queryTable *ui;
-    QList <QString> QueryPatientName;
-    QList <QString> QueryPatientID;
-    QList <QString> QueryAccessionNumber;
-    ModelPatientInfo *model;
-    ModelServerInfo *ServerInfoModel;
-    QSortFilterProxyModel *proxyModel;
+    QList <QString> QueryPatientName_;
+    QList <QString> QueryPatientID_;
+    QList <QString> QueryAccessionNumber_;
+    ModelPatientInfo *model_;
+    ModelServerInfo *ServerInfoModel_;
+    QSortFilterProxyModel *proxyModel_;
     void setComboBoxItems();
     bool queryServer();
 private slots:

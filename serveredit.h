@@ -19,8 +19,8 @@ public:
 
 private:
     Ui::ServerEdit *ui;
-    ModelServerInfo *ServerInfoDataModel;
-    QModelIndex indexModel;
+    ModelServerInfo *ServerInfoDataModel_;
+    QModelIndex indexModel_;
     void checkEchoServer();
 private slots:
     void SaveXMLServerInfo();

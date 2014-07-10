@@ -40,14 +40,14 @@ public:
     QSize s;
     ~DcmServer();
 private:
-    T_ASC_PresentationContextID presID ;
-    DcmDataset *statusDetail;
-    OFCondition result;
-    OFList<OFString> ts;
-    OFString soapClass ;
-    DcmDataset *msg ;
-    Uint16 statusCode;
-    DcmSCU  Sender;
+    T_ASC_PresentationContextID presID_ ;
+    DcmDataset *statusDetail_;
+    OFCondition result_;
+    OFList<OFString> ts_;
+    OFString soapClass_ ;
+    DcmDataset *msg_ ;
+    Uint16 statusCode_;
+    DcmSCU  Sender_;
     Uint8 findUncompressedPC(const OFString& sopClass,DcmSCU& Sender);
 };
 

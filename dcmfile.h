@@ -38,11 +38,11 @@ public:
     bool WriteDataToFile(QString UrlPathDicom,OFString Patient,OFString NumPatient,OFString AccesPatient);
 
 private:
-    DcmFileFormat DcmFilename;
-    OFCondition result;
-    QFileInfoList list;
-    DicomImage* m_dicomImage;
-    E_TransferSyntax xfer;
+    DcmFileFormat DcmFilename_;
+    OFCondition result_;
+    QFileInfoList list_;
+    DicomImage* m_dicomImage_;
+    E_TransferSyntax xfer_;
 };
 
 #endif // DCMFILE_H
